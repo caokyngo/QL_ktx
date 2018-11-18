@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory name="QuanLyDaoTao">
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">root</property>
+		<property name="hibernate.enable_lazy_load_no_trans">true</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/kTXUnit</property>
+		<property name="hibernate.connection.characterEncoding">utf8</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+		<property name="connection.autoReconnect">true</property>
+		<property name="connection.autoReconnectForPools">true</property>
+		<property name="connection.is-connection-validation-required">true</property>
+		<property name="connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+		<property name="hbm2ddl.auto">update</property>
+		<property name="show_sql">true</property>
+		<property name="c3p0.min_size">0</property>
+		<property name="c3p0.max_size">30</property>
+		<property name="c3p0.timeout">600</property>
+		<property name="c3p0.max_statements">0</property>
+		<property name="c3p0.acquire_increment">1</property>
+		<property name="c3p0.idle_test_period">60</property>
+
+		<!-- Quan ly core -->
+		<mapping class="kTXCore.model.DonVi" />
+		<mapping class="kTXCore.model.NhanVien" />
+		<mapping class="kTXCore.model.Lop" />
+		<mapping class="kTXCore.model.SinhVien" />
+		<mapping class="kTXCore.model.NamHoc" />
+		<mapping class="kTXCore.model.HocKy" />
+		<mapping class="kTXCore.model.ChucNang" />
+		<mapping class="kTXCore.model.NhomPhanQuyen" />
+		<mapping class="kTXCore.model.TaiKhoan" />
+		<mapping class="kTXCore.model.TaiKhoanNhanVien" />
+		<mapping class="kTXCore.model.TaiKhoanSinhVien" />
+		<mapping class="kTXCore.modelDanhMuc.DanToc" />
+		<mapping class="kTXCore.modelDanhMuc.TonGiao" />
+
+		<!-- kTXSm1 -->
+		<mapping class="kTXSm1.model.DotKeKhaiThongTinNoiTru" />
+		<mapping class="kTXSm1.model.Phong" />
+		<mapping class="kTXSm1.model.ThongTinNoiTru" />
+		<!-- kTXSm2 -->
+		<mapping class="kTXSm2.model.DonHang" />
+		<mapping class="kTXSm2.model.KhuyenMai" />
+		<mapping class="kTXSm2.model.LoaiDonHang" />
+		<mapping class="kTXSm2.model.MatHang" />
+		<mapping class="kTXSm2.model.NhaCungCap" />
+		<mapping class="kTXSm2.model.TinhTrangDonHang" />
+		<mapping class="kTXSm2.model.ChiTietDonHang" />
+		<!-- kTXSm3 -->
+		<mapping class="kTXSm3.model.DichVu" />
+		<!-- kTXSm4 -->
+		<mapping class="kTXSm4.model.PhanHoi" />
+
+
+
+
+	</session-factory>
+</hibernate-configuration>
