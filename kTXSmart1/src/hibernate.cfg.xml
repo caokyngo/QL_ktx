@@ -49,7 +49,7 @@
 		<mapping class="kTXSm2.model.MatHang" />
 		<mapping class="kTXSm2.model.NhaCungCap" />
 		<mapping class="kTXSm2.model.TinhTrangDonHang" />
-		<mapping class="kTXSm2.model.ChiTietDonHang" />
+		
 		<!-- kTXSm3 -->
 		<mapping class="kTXSm3.model.DichVu" />
 		<!-- kTXSm4 -->

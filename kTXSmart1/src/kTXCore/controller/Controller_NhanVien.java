@@ -42,7 +42,7 @@ public class Controller_NhanVien extends NhanVien implements ZEController {
 	String myFileContentType;
 	String myFileFileName;
 	String myFileName;
-	String myFolder;
+	String myFolder_kTXCore;
 
 	public String getS_ngaySinh() {
 		return s_ngaySinh;
@@ -225,12 +225,38 @@ public class Controller_NhanVien extends NhanVien implements ZEController {
 		this.myFileName = myFileName;
 	}
 
-	public String getMyFolder() {
-		return myFolder;
+	
+
+	public String getDuongDanTrang() {
+		return duongDanTrang;
 	}
 
-	public void setMyFolder(String myFolder) {
-		this.myFolder = myFolder;
+	public void setDuongDanTrang(String duongDanTrang) {
+		this.duongDanTrang = duongDanTrang;
+	}
+
+	public String getDuongDanTrangView() {
+		return duongDanTrangView;
+	}
+
+	public void setDuongDanTrangView(String duongDanTrangView) {
+		this.duongDanTrangView = duongDanTrangView;
+	}
+
+	public String getTenCotTimDoiTuong() {
+		return tenCotTimDoiTuong;
+	}
+
+	public void setTenCotTimDoiTuong(String tenCotTimDoiTuong) {
+		this.tenCotTimDoiTuong = tenCotTimDoiTuong;
+	}
+
+	public String getMyFolder_kTXCore() {
+		return myFolder_kTXCore;
+	}
+
+	public void setMyFolder_kTXCore(String myFolder_kTXCore) {
+		this.myFolder_kTXCore = myFolder_kTXCore;
 	}
 
 	public String getS_hinhAnh() {
@@ -298,7 +324,7 @@ public class Controller_NhanVien extends NhanVien implements ZEController {
 			if (!myFileName.equals("")) {
 				if (myFile != null) {
 					myFileName = getMaNhanVien() + myFileFileName.substring(myFileFileName.lastIndexOf("."));
-					File destFile = new File(myFolder, myFileName);
+					File destFile = new File(myFolder_kTXCore, myFileName);
 					s = destFile + "";
 					FileUtils.copyFile(myFile, destFile);
 					System.out.println(destFile.toString());
@@ -395,7 +421,7 @@ public class Controller_NhanVien extends NhanVien implements ZEController {
 		if(obj.getHinhAnh()!=null) {
 			myFileName = request.getRealPath("kTXCore/images/nhanviens")+"/"+obj.getHinhAnh();
 			System.out.println(myFileName);
-			File destFile = new File(myFolder, myFileName);
+			File destFile = new File(myFolder_kTXCore, myFileName);
 			if(destFile.exists()) {
 				destFile.delete();
 			}
@@ -426,7 +452,7 @@ public class Controller_NhanVien extends NhanVien implements ZEController {
 	public String refresh() {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		HttpSession session = request.getSession();
-		session.setAttribute("arr", null);
+		//session.setAttribute("arr", null);
 		session.setAttribute("msg", null);
 		session.setAttribute("checkTimKiem", null);
 		session.setAttribute("p", duongDanTrang);

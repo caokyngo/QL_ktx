@@ -76,7 +76,7 @@
 										<%=(modeView ? " disabled " : "")%>>
 								</div>
 								<div class="form-group">
-									<label>Ngày bắt đầu</label> <input type="date" class="form-control" name="s_ngayKetThuc"
+									<label>Ngày kết thúc</label> <input type="date" class="form-control" name="s_ngayKetThuc"
 										value="<%=(obj != null ? Util_Date.dateToString(obj.getNgayKetThuc()) : "")%>"
 										<%=(modeView ? " disabled " : "")%>>
 								</div>

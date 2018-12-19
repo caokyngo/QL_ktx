@@ -1,17 +1,25 @@
+<%@page import="org.apache.struts2.ServletActionContext"%>
+<%@page import="kTXSm2.model.MatHang"%>
+<%@page import="kTXSm2.modelDao.DAO_MatHang"%>
+<%@page import="java.util.function.ObjDoubleConsumer"%>
+<%@page import="kTXSm3.model.DichVu"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="kTXSm3.modelDao.DAO_DichVu"%>
+<%@page import="kTXCore.dao.ObjectDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://ckeditor.com" prefix="ckeditor"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8" content="">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>eUSmart</title>
- <link rel="shortcut icon" href="favicon.ico"> 
+<title>kTXSmart</title>
+<link rel="shortcut icon" href="favicon.ico">
 <!-- Bootstrap Core CSS -->
 <link href="content/css_scripts/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -43,7 +51,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
-<style>
+<style type="text/css">
 .block {
 	display: block;
 	width: 100%;
@@ -78,6 +86,7 @@
 		response.sendRedirect("login.jsp");
 	}
 %>
+
 <body>
 	<!-- Fixed navbar -->
 	<nav class="navbar navbar-default navbar-fixed-top">
@@ -90,11 +99,10 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.jsp" style="color: white"> 
-				&nbsp; <img src="content/images/logo.png" style="display: inline-block;" width="30px" height="30px" />
-				<span style="display: inline-block;" >
-					UTC2 Smart 1.0
-				</span>
+			<a class="navbar-brand" href="index.jsp" style="color: white">
+				&nbsp; <img src="content/images/logo.png"
+				style="display: inline-block;" width="30px" height="30px" alt="" />
+				<span style="display: inline-block;"> UTC2 Smart 1.0 </span>
 			</a>
 		</div>
 		<div id="navbar" class="collapse navbar-collapse"
@@ -105,14 +113,16 @@
 
 				<li class="dropdown"><a class="dropdown-toggle"
 					style="color: white;" data-toggle="dropdown" role="button"
-					aria-haspopup="true" aria-expanded="false" href=index.jsp?p=><i
-						class="fa fa-user"></i> <span class="masked"> Tài khoản</a>
+					aria-haspopup="true" aria-expanded="false" href="index.jsp?p="><i
+						class="fa fa-user"></i> <span class="masked"> Tài khoản</span></a>
 					<ul class="dropdown-menu">
-						<li><a href=index.jsp?p=kTXCore/pages/doimatkhau.jsp><i class="glyphicon glyphicon-refresh"></i>
-								&nbsp;&nbsp;Đổi mật khẩu </a></li>		
-						<li><a href=dangXuat.action><i class="fa fa-sign-out"></i>
+						<li><a href="index.jsp?p=kTXCore/pages/doimatkhau.jsp"><i
+								class="glyphicon glyphicon-refresh"></i> &nbsp;&nbsp;Đổi mật
+								khẩu </a></li>
+						<li><a href="dangXuat.action"><i class="fa fa-sign-out"></i>
 								&nbsp;&nbsp;Đăng xuất </a></li>
 					</ul></li>
+				
 			</ul>
 		</div>
 		<!--/.nav-collapse -->
@@ -136,7 +146,7 @@
 			<%
 				} else {
 			%>
-			<iframe src=<%=p%> width="100%" height="600px"></iframe>
+			<iframe src="<%=p%>" width="100%" height="600px"></iframe>
 			<%
 				}
 				}
@@ -153,16 +163,20 @@
 	<!-- /#wrapper -->
 
 	<!-- jQuery -->
-	<script src="content/css_scripts/jquery/jquery.min.js"></script>
+	<script src="content/css_scripts/jquery/jquery.min.js"
+		type="text/javascript"></script>
 
 	<!-- Bootstrap Core JavaScript -->
-	<script src="content/css_scripts/bootstrap/js/bootstrap.min.js"></script>
+	<script src="content/css_scripts/bootstrap/js/bootstrap.min.js"
+		type="text/javascript"></script>
 
 	<!-- Metis Menu Plugin JavaScript -->
-	<script src="content/css_scripts/metisMenu/metisMenu.min.js"></script>
+	<script src="content/css_scripts/metisMenu/metisMenu.min.js"
+		type="text/javascript"></script>
 
 	<!-- Custom Theme JavaScript -->
-	<script src="content/css_scripts/bootstrap/js/sb-admin-2.js"></script>
+	<script src="content/css_scripts/bootstrap/js/sb-admin-2.js"
+		type="text/javascript"></script>
 
 	<script type="text/javascript">
 		$(document).ready(
@@ -182,20 +196,23 @@
 
 	<!-- DataTables JavaScript -->
 	<script
-		src="content/css_scripts/datatables/js/jquery.dataTables.min.js"></script>
+		src="content/css_scripts/datatables/js/jquery.dataTables.min.js"
+		type="text/javascript"></script>
 	<script
-		src="content/css_scripts/datatables-plugins/dataTables.bootstrap.min.js"></script>
+		src="content/css_scripts/datatables-plugins/dataTables.bootstrap.min.js"
+		type="text/javascript"></script>
 	<script
-		src="content/css_scripts/datatables-responsive/dataTables.responsive.js"></script>
+		src="content/css_scripts/datatables-responsive/dataTables.responsive.js"
+		type="text/javascript"></script>
 
-	<script>
+	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#dataTables-example').DataTable({
 				responsive : true,
 				searching : false,
 				info : false,
 				paging : false,
-				sorting: false,
+				sorting : false,
 				language : {
 					searchPlaceholder : "Nhập từ khóa",
 					zeroRecords : "Không có dữ liệu trong bảng",
@@ -223,7 +240,7 @@
 			});
 		});
 	</script>
-<%-- 		<ckeditor:replaceAll basePath="content/ckeditor/" /> --%>
+	<%-- 		<ckeditor:replaceAll basePath="content/ckeditor/" /> --%>
 </body>
 
 </html>

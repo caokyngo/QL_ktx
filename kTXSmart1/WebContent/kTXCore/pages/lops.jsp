@@ -97,7 +97,7 @@
 						<%
 							}
 						%>
-					</select> <label>Chọn khóa</label> <select name="khoa" class="form-control"
+					</select> <label>Chọn khóa</label> <select name="s_khoa" class="form-control"
 						id="khoa" onchange="myFunction()">
 						<%
 							String s_khoa = session.getAttribute("khoa") != null ? session.getAttribute("khoa").toString() : "";
@@ -208,7 +208,8 @@
 <!-- Modal Tìm kiếm-->
 <%@ include file="../../kTXPartial/timkiemModel.jsp"%>
 
-
+<!-- Modal nhập excel-->
+<%@ include file="../../kTXPartial/nhapexcelModal.jsp"%>
 
 
 

@@ -18,35 +18,23 @@
 <%@ include file="../../kTXPartial/code-header.jsp"%>
 
 <%
-	ObjectDAO<Phong> dao = new DAO_Phong();
+ObjectDAO<Phong> dao = new DAO_Phong();
+ArrayList<Phong> list = new ArrayList<Phong>();
 
-	ArrayList<Phong> list = new ArrayList<Phong>();
-
-	String maPhong = request.getParameter("maPhong");
-	maPhong = (maPhong == null || maPhong.equals("null")) ? "all" : maPhong;
-
-	String tenPhong = request.getParameter("tenPhong");
-	tenPhong = (tenPhong == null || tenPhong.equals("null")) ? "all" : tenPhong;
-
-	if (session.getAttribute("checkTimKiem") != null) {
-		ArrayList listTemp = (ArrayList) session.getAttribute("arr");
-		if (listTemp.size() > 0) {
-			if (listTemp.get(0) instanceof Phong) {
-				list = (ArrayList<Phong>) listTemp;
-			} else {
-				session.setAttribute("checkTimKiem", null);
-				list = dao.pagination((long) recordPerPage, (long) Long.parseLong(pid) * recordPerPage);
-			}
-		} else
-			list = new ArrayList<Phong>();
-	} else {
-		if (!maPhong.equals("all"))
-			list = dao.pagination("phong = '" + maPhong + "'", (long) recordPerPage,
-					(long) Long.parseLong(pid) * recordPerPage);
-		else
-			list = dao.pagination("1=1  ORDER BY phong ASC", (long) recordPerPage,
-					(long) Long.parseLong(pid) * recordPerPage);
-	}
+if (session.getAttribute("checkTimKiem") != null) {
+	ArrayList listTemp = (ArrayList) session.getAttribute("arr");
+	if (listTemp.size() > 0) {
+		if (listTemp.get(0) instanceof Phong) {
+			list = (ArrayList<Phong>) listTemp;
+		} else {
+			session.setAttribute("checkTimKiem", null);
+			list = dao.pagination((long) recordPerPage, (long) Long.parseLong(pid) * recordPerPage);
+		}
+	} else
+		list = new ArrayList<Phong>();
+} else {
+	list = dao.pagination((long) recordPerPage, (long) Long.parseLong(pid) * recordPerPage);
+}
 %>
 <div class="row">
 	<div class="col-lg-12">
@@ -73,7 +61,7 @@
 						<th>Địa chỉ</th>
 						<th>Số giường</th>
 						<th>Số giường còn trống</th>
-						<!-- 						<th>Số điện thoại</th> -->
+						
 						<th>Xử lý</th>
 
 					</tr>
@@ -87,7 +75,6 @@
 					%>
 					<tr class="odd gradeX">
 						<td><%=obj.getMaPhong() %></td>
-						<td><%=obj.getTenPhong() != null ? obj.getTenPhong() : "" %></td>
 						<td><%=obj.getTenPhong() != null ? obj.getTenPhong() : "" %></td>
 						<td><%=obj.getDiaChi() != null ? obj.getDiaChi() : "" %></td>
 						<td><%=obj.getSoGiuong() != null ? obj.getSoGiuong() : ""%></td>
@@ -117,5 +104,3 @@
 <script type="text/javascript">
 	document.getElementById("nutNhapLieuExcel").style.display = "none";
 </script>
-</head>
-</html>

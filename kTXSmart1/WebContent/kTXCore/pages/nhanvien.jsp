@@ -95,7 +95,7 @@
 										name="myFile"
 										value="<%=(obj != null && obj.getHinhAnh() != null ? obj.getHinhAnh() : "")%>"
 										type="<%=(modeView ? "hidden" : "file")%>"><img
-										src="<%=obj != null && obj.getHinhAnh() != null && modeView ? "kTXCore/images/nhanviens/" + obj.getHinhAnh()
+										src="<%=obj != null  && modeView ? "kTXCore/images/nhanviens/" + obj.getHinhAnh()
 					: ""%>"
 										height="<%=modeView ? 135 : 1%>"
 										width="<%=modeView ? 135 : 1%>">
@@ -504,9 +504,9 @@
 							</div>
 						</div>
 						<input type="hidden" name="s_hinhAnh"
-							value="<%=obj != null && obj.getHinhAnh() != null ? obj.getHinhAnh() : ""%>">
+							value="<%=obj != null ? obj.getHinhAnh() : ""%>">
 						<input type="hidden" id="myFileName" name="myFileName"></input> <input
-							type="hidden" name="myFolder"
+							type="hidden" name="myFolder_kTXCore"
 							value="<%=request.getRealPath("kTXCore/images/nhanviens")%>" />
 						<div class="panel-footer" style="text-align: left;">
 							<div class="col-md-5"></div>

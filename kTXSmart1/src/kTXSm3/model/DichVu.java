@@ -23,7 +23,6 @@ public class DichVu implements Comparable<DichVu> {
 	public Date thoiGianCapNhat;
 
 	public DichVu() {
-		super();
 
 	}
 

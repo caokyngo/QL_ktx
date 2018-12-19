@@ -8,6 +8,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -15,9 +17,11 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.Type;
 
+import kTXCore.model.ChucNang;
 import kTXSm3.model.DichVu;
 
 @Entity
+
 public class MatHang implements Comparable<MatHang> {
 	@Id
 	public String maMatHang;
@@ -28,6 +32,10 @@ public class MatHang implements Comparable<MatHang> {
 	public KhuyenMai khuyenMai;
 	@ManyToOne
 	public NhaCungCap nhaCungCap;
+	@ManyToOne
+	public LoaiDonHang loaiDonHang;
+	@ManyToMany(mappedBy = "mathangs", fetch = FetchType.EAGER)
+	public Set<DonHang> donhangs = new HashSet<>();
 	public Date ngayNhap;
 	public String hanSuDung;
 	public String soLuongTon;
@@ -41,18 +49,20 @@ public class MatHang implements Comparable<MatHang> {
 	public Date thoiGianCapNhat;
 
 	public MatHang() {
-		super();
+
 	}
 
+
 	public MatHang(String maMatHang, String tenMatHang, DichVu dichVu, KhuyenMai khuyenMai, NhaCungCap nhaCungCap,
-			Date ngayNhap, String hanSuDung, String soLuongTon, Double giaNhap, Double giaBan, Double giaSauKhuyenMai,
-			String anhMoTa, String soDiemDoi, String ghiChu, Date thoiGianCapNhat) {
+			LoaiDonHang loaiDonHang, Date ngayNhap, String hanSuDung, String soLuongTon, Double giaNhap, Double giaBan,
+			Double giaSauKhuyenMai, String anhMoTa, String soDiemDoi, String ghiChu, Date thoiGianCapNhat) {
 		super();
 		this.maMatHang = maMatHang;
 		this.tenMatHang = tenMatHang;
 		this.dichVu = dichVu;
 		this.khuyenMai = khuyenMai;
 		this.nhaCungCap = nhaCungCap;
+		this.loaiDonHang = loaiDonHang;
 		this.ngayNhap = ngayNhap;
 		this.hanSuDung = hanSuDung;
 		this.soLuongTon = soLuongTon;
@@ -63,6 +73,17 @@ public class MatHang implements Comparable<MatHang> {
 		this.soDiemDoi = soDiemDoi;
 		this.ghiChu = ghiChu;
 		this.thoiGianCapNhat = thoiGianCapNhat;
+	}
+
+
+	
+
+	public LoaiDonHang getLoaiDonHang() {
+		return loaiDonHang;
+	}
+
+	public void setLoaiDonHang(LoaiDonHang loaiDonHang) {
+		this.loaiDonHang = loaiDonHang;
 	}
 
 	public String getMaMatHang() {
@@ -150,6 +171,7 @@ public class MatHang implements Comparable<MatHang> {
 	}
 
 	public void setGiaSauKhuyenMai(Double giaSauKhuyenMai) {
+		giaSauKhuyenMai = getGiaBan() - khuyenMai.mucKhuyenMai;
 		this.giaSauKhuyenMai = giaSauKhuyenMai;
 	}
 
@@ -197,6 +219,7 @@ public class MatHang implements Comparable<MatHang> {
 		result = prime * result + ((giaSauKhuyenMai == null) ? 0 : giaSauKhuyenMai.hashCode());
 		result = prime * result + ((hanSuDung == null) ? 0 : hanSuDung.hashCode());
 		result = prime * result + ((khuyenMai == null) ? 0 : khuyenMai.hashCode());
+		result = prime * result + ((loaiDonHang == null) ? 0 : loaiDonHang.hashCode());
 		result = prime * result + ((maMatHang == null) ? 0 : maMatHang.hashCode());
 		result = prime * result + ((ngayNhap == null) ? 0 : ngayNhap.hashCode());
 		result = prime * result + ((nhaCungCap == null) ? 0 : nhaCungCap.hashCode());
@@ -256,6 +279,11 @@ public class MatHang implements Comparable<MatHang> {
 				return false;
 		} else if (!khuyenMai.equals(other.khuyenMai))
 			return false;
+		if (loaiDonHang == null) {
+			if (other.loaiDonHang != null)
+				return false;
+		} else if (!loaiDonHang.equals(other.loaiDonHang))
+			return false;
 		if (maMatHang == null) {
 			if (other.maMatHang != null)
 				return false;
@@ -297,10 +325,10 @@ public class MatHang implements Comparable<MatHang> {
 	@Override
 	public String toString() {
 		return "MatHang [maMatHang=" + maMatHang + ", tenMatHang=" + tenMatHang + ", dichVu=" + dichVu + ", khuyenMai="
-				+ khuyenMai + ", nhaCungCap=" + nhaCungCap + ", ngayNhap=" + ngayNhap + ", hanSuDung=" + hanSuDung
-				+ ", soLuongTon=" + soLuongTon + ", giaNhap=" + giaNhap + ", giaBan=" + giaBan + ", giaSauKhuyenMai="
-				+ giaSauKhuyenMai + ", anhMoTa=" + anhMoTa + ", soDiemDoi=" + soDiemDoi + ", ghiChu=" + ghiChu
-				+ ", thoiGianCapNhat=" + thoiGianCapNhat + "]";
+				+ khuyenMai + ", nhaCungCap=" + nhaCungCap + ", loaiDonHang=" + loaiDonHang + ", ngayNhap=" + ngayNhap
+				+ ", hanSuDung=" + hanSuDung + ", soLuongTon=" + soLuongTon + ", giaNhap=" + giaNhap + ", giaBan="
+				+ giaBan + ", giaSauKhuyenMai=" + giaSauKhuyenMai + ", anhMoTa=" + anhMoTa + ", soDiemDoi=" + soDiemDoi
+				+ ", ghiChu=" + ghiChu + ", thoiGianCapNhat=" + thoiGianCapNhat + "]";
 	}
 
 	@Override

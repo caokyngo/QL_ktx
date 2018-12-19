@@ -125,7 +125,7 @@
 				<b>Số lần nhà trường đi kiểm tra nơi nội trú của HSSV</b>
 			</p>
 		</td>
-		<td width="39%" colspan=5
+		<td width="39%" colspan=5 rowspan="2"
 			style='width: 39.24%; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt'>
 			<p align=center style='margin-bottom: 6.0pt; text-align: center'>
 				<b>Số HSSV bị kỷ luật do vi phạm quy chế HSSV nội trú</b>

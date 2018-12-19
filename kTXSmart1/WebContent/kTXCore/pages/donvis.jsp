@@ -94,9 +94,11 @@
 				<script type="text/javascript">
 					function myFunction() {
 						var maDonViCha = document.getElementById("maDonViCha").value;
-						var recordPerPage = document.getElementById("recordPerPage").value;
+						var recordPerPage = document
+								.getElementById("recordPerPage").value;
 						var p1 = document.getElementById("p1").value;
-						window.location.href = p1 + "&maDonViCha=" + maDonViCha+"&recordPerPage="+recordPerPage;
+						window.location.href = p1 + "&maDonViCha=" + maDonViCha
+								+ "&recordPerPage=" + recordPerPage;
 
 					}
 				</script>

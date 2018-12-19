@@ -97,10 +97,11 @@ public class DotKeKhaiThongTinNoiTru {
 		this.moTa = moTa;
 		this.ghiChu = ghiChu;
 		this.thoiGianCapNhat = thoiGianCapNhat;
-	}
+	}	
 
 	public DotKeKhaiThongTinNoiTru() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override

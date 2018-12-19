@@ -31,14 +31,17 @@
 						onclick="thayDoiMyFileFileName()"> <input type="hidden"
 						value="<%=tenLop%>" id="ten" name="tenLop"> <input
 						type="hidden" id="myFileName" name="myFileName"></input> <input
-						type="hidden" name="myFolder_eCore"
-						value="<%=request.getRealPath("eCore/upload")%>" /> <input
-						type="hidden" name="myFolder_eSm3"
-						value="<%=request.getRealPath("eSm3/upload")%>" /> <input
-						type="hidden" name="myFolder_eSm4"
-						value="<%=request.getRealPath("eSm4/upload")%>" /> <input
-						type="hidden" name="myFolder_eSm5"
-						value="<%=request.getRealPath("eSm5/upload")%>" />
+						type="hidden" name="myFolder_kTXCore"
+						value="<%=request.getRealPath("kTXCore/upload")%>" /> <input
+						type="hidden" name="myFolder_kTXSm1"
+						value="<%=request.getRealPath("kTXSm1/upload")%>" /> <input
+						type="hidden" name="myFolder_kTXSm2"
+						value="<%=request.getRealPath("kTXSm2/upload")%>" /> <input
+						type="hidden" name="myFolder_kTXSm3"
+						value="<%=request.getRealPath("kTXSm3/upload")%>" />
+						<input
+						type="hidden" name="myFolder_kTXSm4"
+						value="<%=request.getRealPath("kTXSm4/upload")%>" />
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"

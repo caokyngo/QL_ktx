@@ -57,44 +57,73 @@ public class Controller_Lop extends Lop implements ZEController, ServletRequestA
 	String s_maDVQL;
 	String s_khoa;
 	
-	File excel_myFile;
-	String excel_myFileContentType;
-	String excel_myFileFileName;
-	String excel_myFileName;
+	
+	File myFile;
+	String myFileContentType;
+	String myFileFileName;
+	String myFileName;
 	String myFolder_kTXCore;
+	
 
 	String tenLop;
 
-	public File getExcel_myFile() {
-		return excel_myFile;
+
+	
+
+	public String getDuongDanTrang() {
+		return duongDanTrang;
 	}
 
-	public void setExcel_myFile(File excel_myFile) {
-		this.excel_myFile = excel_myFile;
+	public void setDuongDanTrang(String duongDanTrang) {
+		this.duongDanTrang = duongDanTrang;
 	}
 
-	public String getExcel_myFileContentType() {
-		return excel_myFileContentType;
+	public String getDuongDanTrangView() {
+		return duongDanTrangView;
 	}
 
-	public void setExcel_myFileContentType(String excel_myFileContentType) {
-		this.excel_myFileContentType = excel_myFileContentType;
+	public void setDuongDanTrangView(String duongDanTrangView) {
+		this.duongDanTrangView = duongDanTrangView;
 	}
 
-	public String getExcel_myFileFileName() {
-		return excel_myFileFileName;
+	public String getTenCotTimDoiTuong() {
+		return tenCotTimDoiTuong;
 	}
 
-	public void setExcel_myFileFileName(String excel_myFileFileName) {
-		this.excel_myFileFileName = excel_myFileFileName;
+	public void setTenCotTimDoiTuong(String tenCotTimDoiTuong) {
+		this.tenCotTimDoiTuong = tenCotTimDoiTuong;
 	}
 
-	public String getExcel_myFileName() {
-		return excel_myFileName;
+	public File getMyFile() {
+		return myFile;
 	}
 
-	public void setExcel_myFileName(String excel_myFileName) {
-		this.excel_myFileName = excel_myFileName;
+	public void setMyFile(File myFile) {
+		this.myFile = myFile;
+	}
+
+	public String getMyFileContentType() {
+		return myFileContentType;
+	}
+
+	public void setMyFileContentType(String myFileContentType) {
+		this.myFileContentType = myFileContentType;
+	}
+
+	public String getMyFileFileName() {
+		return myFileFileName;
+	}
+
+	public void setMyFileFileName(String myFileFileName) {
+		this.myFileFileName = myFileFileName;
+	}
+
+	public String getMyFileName() {
+		return myFileName;
+	}
+
+	public void setMyFileName(String myFileName) {
+		this.myFileName = myFileName;
 	}
 
 	public String getMyFolder_kTXCore() {
@@ -289,13 +318,13 @@ public class Controller_Lop extends Lop implements ZEController, ServletRequestA
 		HttpSession session = request.getSession();
 		try {
 			String s = "";
-			if (!excel_myFileName.equals("")) {
-				if (excel_myFile != null) {
-					excel_myFileName = getTenLop() + excel_myFileFileName.substring(excel_myFileFileName.lastIndexOf("."));
-					System.out.println("123 "+excel_myFileName);
-					File destFile = new File(myFolder_kTXCore, excel_myFileName);
+			if (!myFileName.equals("")) {
+				if (myFile != null) {
+					myFileName = getTenLop() + myFileFileName.substring(myFileFileName.lastIndexOf("."));
+					System.out.println("123 "+myFileName);
+					File destFile = new File(myFolder_kTXCore, myFileName);
 					s = destFile.toString();
-					FileUtils.copyFile(excel_myFile, destFile);
+					FileUtils.copyFile(myFile, destFile);
 					System.out.println(destFile.toString());
 
 				}
@@ -340,8 +369,8 @@ public class Controller_Lop extends Lop implements ZEController, ServletRequestA
 					String tenLop = "";
 					if (cell_tenLop != null)
 						tenLop = cell_tenLop.toString();
-
-					Cell cell_maDonViCha = r.getCell(8);
+					
+					Cell cell_maDonViCha = r.getCell(7);
 					String maDonViCha = "";
 					if (cell_maDonViCha != null)
 						maDonViCha = cell_maDonViCha.toString();
@@ -354,12 +383,13 @@ public class Controller_Lop extends Lop implements ZEController, ServletRequestA
 						donViCha = null;
 
 					obj.setMaLop(maLop);
-					obj.setKhoa(nienKhoa);
+					obj.setKhoa(khoa);
 					obj.setNienKhoa(nienKhoa);
 					obj.setGhiChu(ghiChu);
 					obj.setMoTa(moTa);
 					obj.setTenLop(tenLop);
 					obj.setDonVi(donViCha);
+					
 
 					if (objDAO.saveOrUpdate(obj)) {
 						kq += "";

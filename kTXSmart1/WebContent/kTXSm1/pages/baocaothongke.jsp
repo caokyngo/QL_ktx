@@ -37,7 +37,7 @@
 	if (namHoc == null || namHoc.equals("null") || namHoc.equals("")) {
 		namHoc = minDate.getYear() + 1900 + "-" + minDate.getYear() + 1901;
 		response.sendRedirect(
-				"index.jsp?p=kTXSm1/pages/baocaosinhvienngoaitru.jsp&namHoc=" + start_year + "-" + end_year);
+				"index.jsp?p=kTXSm1/pages/baocaosinhviennoitru.jsp&namHoc=" + start_year + "-" + end_year);
 	}
 	String[] arr = namHoc.split("-");
 	int namBatDau = Integer.parseInt(arr[0]);
@@ -51,7 +51,7 @@
 				<label class="control-label">Chọn năm học</label> <select
 					class="form-control" id="namHoc" onchange="changeFunc();">
 					<%
-						for (int i = start_year; i < new Date().getYear() + 1900; i++) {
+						for (int i = start_year; i <= new Date().getYear() + 1900; i++) {
 							int bd = i;
 							int kt = i + 1;
 					%>
@@ -67,7 +67,7 @@
 			<div class="col-md-3">
 				<label class="control-label">&nbsp</label> <a type="submit"
 					class="form-control btn btn-warning"
-					href="index.jsp?p=kTXSm1/pages/baocaosinhvienngoaitru.jsp&namHoc=<%=start_year%>-<%=end_year%>">
+					href="index.jsp?p=kTXSm1/pages/baocaosinhviennoitru.jsp&namHoc=<%=start_year%>-<%=end_year%>">
 					<img alt="" src="content/images/report-32.png" width="16px"
 					height="16px"> Thống kê
 				</a>

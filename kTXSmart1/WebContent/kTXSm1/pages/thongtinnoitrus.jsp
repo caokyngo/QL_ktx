@@ -15,7 +15,6 @@
 <%
 String tenLop = "ThongTinNoiTru";
 String tenTrang = "Thông tin nội trú";
-String trangDanhSach = "index.jsp?p=kTXSm1/pages/thongtinngoaitrus.jsp";
 String[] tk_value = { "maThongTinNoiTru", "sinhVien", "phong", "dotKeKhaiThongTinNoiTru", "ngayDangKy",
 		"ngayKeKhaiThongTin" };
 String[] tk_show = { "Mã thông tin nội trú", "Sinh viên", "Phòng", "Đợt kê khai thông tin nội trú",
@@ -115,10 +114,10 @@ String[] tk_show = { "Mã thông tin nội trú", "Sinh viên", "Phòng", "Đợ
 					</script>
 				</form>
 				<form class="form-inline pull-right"
-					action="exportThongTinNgoaiTru.action">
+					action="exportThongTinNoiTru.action">
 					<input hidden=""
 						value="<%=request.getParameter("maDot") != null ? request.getParameter("maDot") : ""%>"
-						name="maDotKeKhaiThongTinNgoaiTru">
+						name="maDotKeKhaiThongTinNoiTru">
 					<button type="submit" class="form-control btn btn-success" value="">
 						<img alt="" src="content/images/excel-32.png" width="16px"
 							height="16px"> Xuất danh sách excel
@@ -148,8 +147,8 @@ String[] tk_show = { "Mã thông tin nội trú", "Sinh viên", "Phòng", "Đợ
 					%>
 					<tr class="odd gradeX">
 						<td><%=obj.getMaThongTinNoiTru() %></td>
-						<td><%=obj.getSinhVien().getHoDem() + " " + obj.getSinhVien().getTen() %></td>
-						<td><%=obj.getPhong().getTenPhong() %></td>
+						<td><%=obj.getSinhVien() != null ? obj.getSinhVien().getMaSinhVien()  : ""%></td>
+						<td><%=obj.getPhong() != null ? obj.getPhong().getMaPhong() : "" %></td>
 						<td><%=obj.getDotKeKhaiThongTinNoiTru().getTenDotKeKhaiThongTinNoiTru() %></td>
 						<td><%=Util_Date.dateToString2(obj.getNgayDangKy()) %></td>
 						<td><%=Util_Date.dateToString2(obj.getNgayKeKhaiThongTin()) %></td>
@@ -177,7 +176,7 @@ String[] tk_show = { "Mã thông tin nội trú", "Sinh viên", "Phòng", "Đợ
 <%@ include file="../../kTXPartial/timkiemModel.jsp"%>
 
 
-<%
+<%-- <%
 	if (sinhVien != null) {
 %>
 <script>
@@ -194,7 +193,7 @@ String[] tk_show = { "Mã thông tin nội trú", "Sinh viên", "Phòng", "Đợ
 </script>
 <%
 	}
-%>
+%> --%>
 
 <%
 	session.removeAttribute("msg");

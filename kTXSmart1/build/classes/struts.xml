@@ -17,7 +17,17 @@
 			<result name="SUCCESS">/login.jsp</result>
 			<result name="FAIL">/index.jsp</result>
 		</action>
-		<!-- Xử lý lớp -->
+		
+
+		<!-- xử lý đợt kê khai thông tin nội trú -->
+		<!-- tìm kiếm đợt kê khai -->
+		<action name="timKiemDotKeKhaiThongTinNoiTru"
+			class="kTXSm1.controller.Controller_DotKeKhaiThongTinNoiTru" method="search">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+
+	<!-- Xử lý lớp -->
 		<!-- Tìm kiếm lớp -->
 		<action name="timKiemLop" class="kTXCore.controller.Controller_Lop"
 			method="search">
@@ -68,6 +78,12 @@
 		</action>
 
 		<!-- Ho Van Bi - 1/6/2018 -->
+		<!-- import excel lop -->
+		<action name="importLop" class="kTXCore.controller.Controller_Lop"
+			method="importData">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
 		<!-- xuat excel Lop -->
 		<action name="exportLop" class="kTXCore.controller.Controller_Lop"
 			method="exportData">
@@ -228,7 +244,7 @@
 			<result name="FAIL">/index.jsp</result>
 		</action>
 
-		<!-- Ho Van Bi - 5/6/2018 -->
+
 		<!-- import đơn vị -->
 		<action name="importDonVi" class="kTXCore.controller.Controller_DonVi"
 			method="importData">
@@ -398,7 +414,7 @@
 			<result name="FAIL">/index.jsp</result>
 		</action>
 
-		<!-- Tải lại đơn vị -->
+		<!-- Tải lại sinh viên -->
 		<action name="taiLaiSinhVien" class="kTXCore.controller.Controller_SinhVien"
 			method="refresh">
 			<result name="SUCCESS">/index.jsp</result>
@@ -438,7 +454,7 @@
 			<result name="FAIL">/index.jsp</result>
 		</action>
 
-		<!-- Hồ Văn Bi - 2/6/2018 -->
+
 		<action name="exportSinhVien" class="kTXCore.controller.Controller_SinhVien"
 			method="exportData">
 			<result name="SUCCESS">/index.jsp</result>
@@ -495,7 +511,7 @@
 			<result name="FAIL">/index.jsp</result>
 		</action>
 
-		<!-- Hồ Văn Bi - 27/5/2018 -->
+
 		<!-- Đổi mật khẩu -->
 		<action name="doiMatKhauTaiKhoanNhanVien" class="kTXCore.controller.Controller_TaiKhoanNhanVien"
 			method="doiMatKhau">
@@ -563,38 +579,514 @@
 		</action>
 		<!-- kết thúc xử lý TaiKhoanSinhVien -->
 
+		<!-- xử lý đợt kê khai thông tin nội trú -->
+		<!-- tải lại đợt kê khai thông tin nội trú -->
+		<action name="taiLaiDotKeKhaiThongTinNoiTru"
+			class="kTXSm1.controller.Controller_DotKeKhaiThongTinNoiTru" method="refresh">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
 
-		<!-- HO VAN BI -->
-		<!-- Quan ly eSm3 -->
-		<!-- Xử lý cơ sở khám chữa bệnh -->
-		<!-- Tìm kiếm cơ sở khám chữa bệnh -->
-		<!-- <action name="timKiemCoSoKhamChuaBenh" class="eSm3.controller.Controller_CoSoKhamChuaBenh" 
-			method="search"> <result name="SUCCESS">/index.jsp</result> <result name="FAIL">/index.jsp</result> 
-			</action> Tải lại cơ sở khám chữa bệnh <action name="taiLaiCoSoKhamChuaBenh" 
-			class="eSm3.controller.Controller_CoSoKhamChuaBenh" method="refresh"> <result 
-			name="SUCCESS">/index.jsp</result> <result name="FAIL">/index.jsp</result> 
-			</action> Thêm mới cơ sở khám chữa bệnh <action name="themMoiCoSoKhamChuaBenh" 
-			class="eSm3.controller.Controller_CoSoKhamChuaBenh" method="addNew"> <result 
-			name="SUCCESS">/index.jsp</result> <result name="FAIL">/index.jsp</result> 
-			</action> Lưu cơ sở khám chữa bệnh <action name="luuDuLieuCoSoKhamChuaBenh" 
-			class="eSm3.controller.Controller_CoSoKhamChuaBenh" method="saveOrUpdate"> 
-			<result name="SUCCESS">/index.jsp</result> <result name="FAIL">/index.jsp</result> 
-			</action> Xem chi tiết cơ sở khám chữa bệnh <action name="xemChiTietCoSoKhamChuaBenh" 
-			class="eSm3.controller.Controller_CoSoKhamChuaBenh" method="viewDetail"> 
-			<result name="SUCCESS">/index.jsp</result> <result name="FAIL">/index.jsp</result> 
-			</action> Xem chi tiet va chinh sua cơ sở khám chữa bệnh <action name="xemChiTietVaChinhSuaCoSoKhamChuaBenh" 
-			class="eSm3.controller.Controller_CoSoKhamChuaBenh" method="viewDetailAndEdit"> 
-			<result name="SUCCESS">/index.jsp</result> <result name="FAIL">/index.jsp</result> 
-			</action> Xoa cơ sở khám chữa bệnh <action name="deleteCoSoKhamChuaBenh" 
-			class="eSm3.controller.Controller_CoSoKhamChuaBenh" method="delete"> <result 
-			name="SUCCESS">/index.jsp</result> <result name="FAIL">/index.jsp</result> 
-			</action> Xoa toàn bộ cơ sở khám chữa bệnh <action name="deleteAllCoSoKhamChuaBenh" 
-			class="eSm3.controller.Controller_CoSoKhamChuaBenh" method="deleteAll"> <result 
-			name="SUCCESS">/index.jsp</result> <result name="FAIL">/index.jsp</result> 
-			</action> import cơ sở khám chữa bệnh <action name="importCoSoKhamChuaBenh" 
-			class="eSm3.controller.Controller_CoSoKhamChuaBenh" method="importData"> 
-			<result name="SUCCESS">/index.jsp</result> <result name="FAIL">/index.jsp</result> 
-			</action> kết thúc xử lý cơ sở khám chữa bệnh -->
+		<!-- Thêm mới đợt kê khai thông tin nội trú -->
+		<action name="themMoiDotKeKhaiThongTinNoiTru"
+			class="kTXSm1.controller.Controller_DotKeKhaiThongTinNoiTru" method="addNew">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+
+		<!-- Lưu đợt kê khai thông tin nội trú -->
+		<action name="luuDuLieuDotKeKhaiThongTinNoiTru"
+			class="kTXSm1.controller.Controller_DotKeKhaiThongTinNoiTru" method="saveOrUpdate">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+
+		<!-- Xem chi tiet -->
+		<action name="xemChiTietDotKeKhaiThongTinNoiTru"
+			class="kTXSm1.controller.Controller_DotKeKhaiThongTinNoiTru" method="viewDetail">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+
+		<!-- Xem chi tiet va chinh sua -->
+		<action name="xemChiTietVaChinhSuaDotKeKhaiThongTinNoiTru"
+			class="kTXSm1.controller.Controller_DotKeKhaiThongTinNoiTru" method="viewDetailAndEdit">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+
+		<!-- Xoa chức năng -->
+		<action name="deleteDotKeKhaiThongTinNoiTru"
+			class="kTXSm1.controller.Controller_DotKeKhaiThongTinNoiTru" method="delete">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+		<!-- kết thúc xử lý đợt kê khai thông tin nội trú -->
+
+		<!-- xử lý phòng -->
+		<!-- tải lại phòng -->
+		<action name="taiLaiPhong" class="kTXSm1.controller.Controller_Phong"
+			method="refresh">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+
+		<!-- Thêm mới phòng -->
+		<action name="themMoiPhong" class="kTXSm1.controller.Controller_Phong"
+			method="addNew">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+
+		<!-- Lưu thông tin phòng -->
+		<action name="luuDuLieuPhong" class="kTXSm1.controller.Controller_Phong"
+			method="saveOrUpdate">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+
+		<!-- xem chi tiết phòng -->
+		<action name="xemChiTietPhong" class="kTXSm1.controller.Controller_Phong"
+			method="viewDetail">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+
+		<!-- xem chi tiết và chỉnh sửa thông tin phòng -->
+		<action name="xemChiTietVaChinhSuaPhong" class="kTXSm1.controller.Controller_Phong"
+			method="viewDetailAndEdit">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+
+		<!-- xóa phòng -->
+		<action name="deletePhong" class="kTXSm1.controller.Controller_Phong"
+			method="delete">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+		<!-- kết thúc xử lý phòng -->
+
+		<!-- Xử lý thông tin nội trú -->
+		<!-- tải lại thông tin nội trú -->
+		<action name="taiLaiThongTinNoiTru" class="kTXSm1.controller.Controller_ThongTinNoiTru"
+			method="refresh">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+
+		<!-- thêm thông tin nội trú -->
+		<action name="themMoiThongTinNoiTru" class="kTXSm1.controller.Controller_ThongTinNoiTru"
+			method="addNew">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+
+		<!-- lưu thông tin nội trú -->
+		<action name="luuDuLieuThongTinNoiTru" class="kTXSm1.controller.Controller_ThongTinNoiTru"
+			method="saveOrUpdate">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+
+		<!--xem chi tiết thông tin nội trú -->
+		<action name="xemChiTietThongTinNoiTru" class="kTXSm1.controller.Controller_ThongTinNoiTru"
+			method="viewDetail">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+
+		<!--xem chi tiết và chỉnh sửa thông tin nội trú -->
+		<action name="xemChiTietVaChinhSuaThongTinNoiTru" class="kTXSm1.controller.Controller_ThongTinNoiTru"
+			method="viewDetailAndEdit">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+
+		<!--xóa thông tin nội trú -->
+		<action name="deleteThongTinNoiTru" class="kTXSm1.controller.Controller_ThongTinNoiTru"
+			method="delete">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+
+		<!-- xuat excel thông tin nội trú -->
+		<action name="exportThongTinNoiTru" class="kTXSm1.controller.Controller_ThongTinNoiTru"
+			method="exportData">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+
+		<!-- xử lý mặt hàng -->
+		<!-- tìm kiếm mặt hàng -->
+		<action name="timKiemMatHang"
+			class="kTXSm2.controller.Controller_MatHang" method="search">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+		
+		<action name="timKiemDVMatHang"
+			class="kTXSm2.controller.Controller_MatHang" method="searchDV">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+		
+		<!-- tải lại mặt hàng -->
+		<action name="taiLaiMatHang" class="kTXSm2.controller.Controller_MatHang"
+			method="refresh">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+
+		<!-- thêm mới mặt hàng -->
+		<action name="themMoiMatHang" class="kTXSm2.controller.Controller_MatHang"
+			method="addNew">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+
+		<!-- lưu thông tin mặt hàng -->
+		<action name="luuDuLieuMatHang" class="kTXSm2.controller.Controller_MatHang"
+			method="saveOrUpdate">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+
+		<!-- xem chi tiết thông tin mặt hàng -->
+		<action name="xemChiTietMatHang" class="kTXSm2.controller.Controller_MatHang"
+			method="viewDetail">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+
+		<!-- xem chi tiết và chỉnh sửa mặt hàng -->
+		<action name="xemChiTietVaChinhSuaMatHang" class="kTXSm2.controller.Controller_MatHang"
+			method="viewDetailAndEdit">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+
+		<!-- xóa mặt hàng -->
+		<action name="deleteMatHang" class="kTXSm2.controller.Controller_MatHang"
+			method="delete">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+		<!-- kết thúc xử lý mặt hàng -->
+
+		<!-- bắt đầu xử lý tình trạng đơn hàng -->
+		<!-- tải lại tình trạng đơn hàng -->
+		<action name="taiLaiTinhTrangDonHang" class="kTXSm2.controller.Controller_TinhTrangDonHang"
+			method="refresh">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+
+		<!-- thêm mới tình trạng đơn hàng -->
+		<action name="themMoiTinhTrangDonHang" class="kTXSm2.controller.Controller_TinhTrangDonHang"
+			method="addNew">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+
+		<!-- lưu thông tin tình trạng đơn hàng -->
+		<action name="luuDuLieuTinhTrangDonHang" class="kTXSm2.controller.Controller_TinhTrangDonHang"
+			method="saveOrUpdate">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+
+		<!-- xem chi tiết tình trạng đơn hàng -->
+		<action name="xemChiTietTinhTrangDonHang" class="kTXSm2.controller.Controller_TinhTrangDonHang"
+			method="viewDetail">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+
+		<!-- xem chi tiết và chỉnh sửa tình trạng đơn hàng -->
+		<action name="xemChiTietVaChinhSuaTinhTrangDonHang" class="kTXSm2.controller.Controller_TinhTrangDonHang"
+			method="viewDetailAndEdit">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+
+		<!-- xóa tình trạng đơn hàng -->
+		<action name="deleteTinhTrangDonHang" class="kTXSm2.controller.Controller_TinhTrangDonHang"
+			method="delete">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+		<!-- kết thúc xử lý tình trạng đơn hàng -->
+
+		<!-- xử lý loại đơn hàng -->
+		<!-- tải lại loại đơn hàng -->
+		<action name="taiLaiLoaiDonHang" class="kTXSm2.controller.Controller_LoaiDonHang"
+			method="refresh">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+		<!-- thêm mới loại đơn hàng -->
+		<action name="themMoiLoaiDonHang" class="kTXSm2.controller.Controller_LoaiDonHang"
+			method="addNew">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+
+		<!-- lưu thông tin loại đơn hàng -->
+		<action name="luuDuLieuLoaiDonHang" class="kTXSm2.controller.Controller_LoaiDonHang"
+			method="saveOrUpdate">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+
+		<!-- xem chi tiết loại đơn hàng -->
+		<action name="xemChiTietLoaiDonHang" class="kTXSm2.controller.Controller_LoaiDonHang"
+			method="viewDetail">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+
+		<!-- xem chi tiết và chỉnh sửa loại đơn hàng -->
+		<action name="xemChiTietVaChinhSuaLoaiDonHang" class="kTXSm2.controller.Controller_LoaiDonHang"
+			method="viewDetailAndEdit">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+
+		<!-- xóa loại đơn hàng -->
+		<action name="deleteLoaiDonHang" class="kTXSm2.controller.Controller_LoaiDonHang"
+			method="delete">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+		<!-- kết thúc xử lý loại đơn hàng -->
+
+		<!-- xử lý nhà cung cấp -->
+		<!-- tải lại nhà cung cấp -->
+		<action name="taiLaiNhaCungCap" class="kTXSm2.controller.Controller_NhaCungCap"
+			method="refresh">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+
+		<!-- thêm mới nhà cung cấp -->
+		<action name="themMoiNhaCungCap" class="kTXSm2.controller.Controller_NhaCungCap"
+			method="addNew">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+
+		<!-- lưu thông tin nhà cung cấp -->
+		<action name="luuDuLieuNhaCungCap" class="kTXSm2.controller.Controller_NhaCungCap"
+			method="saveOrUpdate">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+
+		<!-- xem chi tiết nhà cung cấp -->
+		<action name="xemChiTietNhaCungCap" class="kTXSm2.controller.Controller_NhaCungCap"
+			method="viewDetail">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+
+		<!-- xem chi tiết và chỉnh sửa nhà cung cấp -->
+		<action name="xemChiTietVaChinhSuaNhaCungCap" class="kTXSm2.controller.Controller_NhaCungCap"
+			method="viewDetailAndEdit">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+
+		<!-- xóa nhà cung cấp -->
+		<action name="deleteNhaCungCap" class="kTXSm2.controller.Controller_NhaCungCap"
+			method="delete">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+		<!-- kết thúc xử lý nhà cung cấp -->
+
+		<!-- bắt đầu xử lý khuyến mãi -->
+		<!-- tải lại khuyến mãi -->
+		<action name="taiLaiKhuyenMai" class="kTXSm2.controller.Controller_KhuyenMai"
+			method="refresh">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+		
+		<!-- thêm mới chương trình khuyến mãi -->
+		<action name="themMoiKhuyenMai" class="kTXSm2.controller.Controller_KhuyenMai"
+			method="addNew">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+		
+		<!-- lưu thông tin khuyến mãi -->
+		<action name="luuDuLieuKhuyenMai" class="kTXSm2.controller.Controller_KhuyenMai"
+			method="saveOrUpdate">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+		
+		<!-- xem chi tiết khuyến mãi -->
+		<action name="xemChiTietKhuyenMai" class="kTXSm2.controller.Controller_KhuyenMai"
+			method="viewDetail">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+		
+		<!-- xem chi tiết và chỉnh sửa khuyến mãi -->
+		<action name="xemChiTietVaChinhSuaKhuyenMai" class="kTXSm2.controller.Controller_KhuyenMai"
+			method="viewDetailAndEdit">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+		
+		<!-- xóa chương trình khuyến mãi -->
+		<action name="deleteKhuyenMai" class="kTXSm2.controller.Controller_KhuyenMai"
+			method="delete">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+		<!-- kết thúc xử lý khuyến mãi -->
+		
+		<!-- bắt đầu xử lý dịch vụ -->
+		<!-- tải lại dịch vụ -->
+		<action name="taiLaiDichVu" class="kTXSm3.controller.Controller_DichVu"
+			method="refresh">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+		
+		<!-- thêm mới dịch vụ -->
+		<action name="themMoiDichVu" class="kTXSm3.controller.Controller_DichVu"
+			method="addNew">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+		
+		<!-- lưu thông tin dịch vụ -->
+		<action name="luuDuLieuDichVu" class="kTXSm3.controller.Controller_DichVu"
+			method="saveOrUpdate">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+		
+		<!-- xem chi tiết dịch vụ -->
+		<action name="xemChiTietDichVu" class="kTXSm3.controller.Controller_DichVu"
+			method="viewDetail">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+		
+		<!-- xem chi tiết và chỉnh sửa dịch vụ -->
+		<action name="xemChiTietVaChinhSuaDichVu" class="kTXSm3.controller.Controller_DichVu"
+			method="viewDetailAndEdit">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+		
+		<!-- xóa chương trình dịch vụ -->
+		<action name="deleteDichVu" class="kTXSm3.controller.Controller_DichVu"
+			method="delete">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+		<!-- kết thúc xử lý dịch vụ -->
+		
+		<!-- bắt đầu xử lý phản hồi -->
+		<!-- tải lại phản hồi -->
+		<action name="taiLaiPhanHoi" class="kTXSm4.controller.Controller_PhanHoi"
+			method="refresh">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+		
+		<!-- thêm mới phản hồi -->
+		<action name="themMoiPhanHoi" class="kTXSm4.controller.Controller_PhanHoi"
+			method="addNew">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+		
+		<!-- lưu thông tin phản hồi -->
+		<action name="luuDuLieuPhanHoi" class="kTXSm4.controller.Controller_PhanHoi"
+			method="saveOrUpdate">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+		
+		<!-- xem chi tiết phản hồi -->
+		<action name="xemChiTietPhanHoi" class="kTXSm4.controller.Controller_PhanHoi"
+			method="viewDetail">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+		
+		<!-- xem chi tiết và chỉnh sửa dịch vụ -->
+		<action name="xemChiTietVaChinhSuaPhanHoi" class="kTXSm4.controller.Controller_PhanHoi"
+			method="viewDetailAndEdit">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+		
+		<!-- xóa chương trình phản hồi -->
+		<action name="deletePhanHoi" class="kTXSm4.controller.Controller_PhanHoi"
+			method="delete">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+		<!-- kết thúc xử lý phản hồi -->
+		
+		<!-- bắt đầu xử lý đơn hàng -->
+		<!-- tìm kiếm đơn hàng -->
+		<action name="timKiemDonHang"
+			class="kTXSm2.controller.Controller_DonHang" method="search">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+		
+		<!-- thêm mới đơn hàng -->
+		<action name="themMoiDonHang" class="kTXSm2.controller.Controller_DonHang"
+			method="addNew">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+		
+		<!-- tải lại đơn hàng -->
+		<action name="taiLaiDonHang" class="kTXSm2.controller.Controller_DonHang"
+			method="refresh">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+		
+		<!-- lưu thông tin đơn hàng -->
+		<action name="luuDuLieuDonHang" class="kTXSm2.controller.Controller_DonHang"
+			method="saveOrUpdate">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+		
+		<!-- xem chi tiết đơn hàng -->
+		<action name="xemChiTietDonHang" class="kTXSm2.controller.Controller_DonHang"
+			method="viewDetail">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+		<!-- xem chi tiết và chỉnh sửa đơn hàng -->
+		<action name="xemChiTietVaChinhSuaDonHang" class="kTXSm2.controller.Controller_DonHang"
+			method="viewDetailAndEdit">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+		
+		<!-- xóa chương trình đơn hàng -->
+		<action name="deleteDonHang" class="kTXSm2.controller.Controller_DonHang"
+			method="delete">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="FAIL">/index.jsp</result>
+		</action>
+		<!-- kết thúc xử lý đơn hàng -->
+		
 
 	</package>
 </struts>

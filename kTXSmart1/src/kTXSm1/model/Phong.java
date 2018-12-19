@@ -37,6 +37,10 @@ public class Phong implements Comparable<Phong> {
 		this.tenPhong = tenPhong;
 	}
 
+	
+
+	
+
 	public String getSoGiuong() {
 		return soGiuong;
 	}
@@ -90,6 +94,11 @@ public class Phong implements Comparable<Phong> {
 	}
 	
 
+	
+
+
+	
+
 	public Phong(String maPhong, String tenPhong, String diaChi, String soGiuong, String soGiuongConTrong, String moTa,
 			String ghiChu, Date thoiGianCapNhat) {
 		super();
@@ -102,7 +111,6 @@ public class Phong implements Comparable<Phong> {
 		this.ghiChu = ghiChu;
 		this.thoiGianCapNhat = thoiGianCapNhat;
 	}
-
 
 	@Override
 	public int hashCode() {

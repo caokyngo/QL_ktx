@@ -1,3 +1,4 @@
+<%@page import="kTXCore.util.Util_Number"%>
 <%@page import="kTXCore.model.HocKy"%>
 <%@page import="kTXCore.modelDao.DAO_HocKy"%>
 <%@page import="kTXSm1.model.Phong"%>
@@ -19,7 +20,7 @@
 <%
 	String tenLop = "ThongTinNoiTru";
 	String tenTrang = "Thông tin nội trú";
-	String trangDanhSach = "index.jsp?p=kTXSm1/pages/thongtinngoaitrus.jsp";
+	String trangDanhSach = "index.jsp?p=kTXSm1/pages/thongtinnoitrus.jsp";
 	String[] tk_value = { "maThongTinNoiTru", "sinhVien", "phong", "dotKeKhaiThongTinNoiTru", "ngayDangKy",
 			"ngayKeKhaiThongTin" };
 	String[] tk_show = { "Mã thông tin nội trú", "Sinh viên", "Phòng", "Đợt kê khai thông tin nội trú",
@@ -37,11 +38,11 @@
 	boolean modeView = mode.equals("viewDetail");
 	boolean modeEdit = mode.equals("viewDetailAndEdit");
 
-	// kiểm tra xem đang truy cập vào trang đăng ký bằng link p=kTXSm1/pages/thongtinngoaitru.jsp
+	// kiểm tra xem đang truy cập vào trang đăng ký bằng link p=kTXSm1/pages/thongtinnoitru.jsp
 	// hay vào trang đăng ký bằng nhấn nút thêm mới 
 	// nếu vào bằng link trên thì set lại modeView =false để không bị lỗi khi vào xem chi tiết, sau đó vào trang thêm mới bằng link trên
 	String p = request.getParameter("p") + "";
-	if (p.equals("kTXSm1/pages/thongtinngoaitru.jsp"))
+	if (p.equals("kTXSm1/pages/thongtinnoitru.jsp"))
 		modeView = false;
 
 	ThongTinNoiTru obj = null;
@@ -87,61 +88,84 @@
 										readonly required="required">
 								</div>
 								<div class="form-group">
-									<label>Ngày đăng ký <span class="text-danger">(*)</span></label>
+									<label>Ngày kê khai thông tin <span class="text-danger">(*)</span></label>
 									<input type="date" class="form-control"
-										name="ngayKeKhaiThongTin"
+										name="s_ngayKeKhaiThongTin"
 										value="<%=(obj != null ? Util_Date.dateToString(obj.getNgayKeKhaiThongTin())
 					: Util_Date.dateToString(new Date()))%>"
 										disabled required="required">
 								</div>
 								<div class="form-group">
-									<label>Đợt kê khai thông tin nội trú <span
-										class="text-danger">(*)</span></label> <select class="form-control"
-										name="maDotKeKhaiThongTinNoiTru"
-										<%=(modeView ? " disabled " : "")%> required="required">
-										<%
-											ObjectDAO objdao = new DAO_DotKeKhaiThongTinNoiTru();
-											ArrayList<DotKeKhaiThongTinNoiTru> listDotKeKhaiThongTinNoiTru = objdao.listAll();
-											Date currentDate = new Date();
-											ArrayList<DotKeKhaiThongTinNoiTru> list_remove = new ArrayList<DotKeKhaiThongTinNoiTru>();
+									<label>Đợt kê khai nội trú <span class="text-danger">(*)</span></label>
+									<%
+										ObjectDAO objdao = new DAO_DotKeKhaiThongTinNoiTru();
+										ArrayList<DotKeKhaiThongTinNoiTru> listDotKeKhaiThongTinNoiTru = objdao.listAll();
+										Date currentDate = new Date();
+										ArrayList<DotKeKhaiThongTinNoiTru> list_remove = new ArrayList<DotKeKhaiThongTinNoiTru>();
 
-											for (DotKeKhaiThongTinNoiTru dotKeKhaiThongTinNoiTru : listDotKeKhaiThongTinNoiTru) {
-												if (!(currentDate.after(dotKeKhaiThongTinNoiTru.getNgayBatDau())
-														&& currentDate.before(dotKeKhaiThongTinNoiTru.getNgayKetThuc()))) {
-													// nếu ngày hiện tại không nằm trong khoảng thời gian của đợt đăng ký
-													// => thêm đợt đăng ký đó vào list_remove để xóa
-													list_remove.add(dotKeKhaiThongTinNoiTru);
-												}
+										for (DotKeKhaiThongTinNoiTru dotKeKhaiThongTinNoiTru : listDotKeKhaiThongTinNoiTru) {
+											if (!(currentDate.after(dotKeKhaiThongTinNoiTru.getNgayBatDau())
+													&& currentDate.before(dotKeKhaiThongTinNoiTru.getNgayKetThuc()))) {
+												// nếu ngày hiện tại không nằm trong khoảng thời gian của đợt đăng ký
+												// => thêm đợt đăng ký đó vào list_remove để xóa
+												list_remove.add(dotKeKhaiThongTinNoiTru);
 											}
-											listDotKeKhaiThongTinNoiTru.removeAll(list_remove);
-											// mặc định sẽ không nằm trong đợt đăng ký
-											// nếu sau bước kiểm tra ở trên mà có đợt đăng ký nào trong ngày hiện tại => isTrongDotKeKhai = true 
-											boolean isTrongDotKeKhai = false;
-											if (listDotKeKhaiThongTinNoiTru.size() > 0)
-												isTrongDotKeKhai = true;
-										%>
-										<select class="form-control" name="maDotKeKhaiThongTinNoiTru"
+										}
+										listDotKeKhaiThongTinNoiTru.removeAll(list_remove);
+										// mặc định sẽ không nằm trong đợt đăng ký
+										// nếu sau bước kiểm tra ở trên mà có đợt đăng ký nào trong ngày hiện tại => isTrongDotDangKy = true 
+										boolean isTrongDotKeKhai = false;
+										if (listDotKeKhaiThongTinNoiTru.size() > 0)
+											isTrongDotKeKhai = true;
+									%>
+									<select class="form-control" name="maDotKeKhaiThongTinNoiTru"
 										<%=(modeView || isTrongDotKeKhai == false ? " disabled " : "")%>
 										required="required">
-											<%
-												if (obj == null) {
-													// trường hợp chưa đăng ký => lấy danh sách đợt đăng ký từ bảng đợt đăng ký
-													for (DotKeKhaiThongTinNoiTru dotKeKhaiThongTinNoiTru : listDotKeKhaiThongTinNoiTru) {
-											%>
-											<option
-												value="<%=dotKeKhaiThongTinNoiTru.getMaDotKeKhaiThongTinNoiTru()%>"><%=dotKeKhaiThongTinNoiTru.getTenDotKeKhaiThongTinNoiTru()%></option>
-											<%
-												}
-												}
-												if (obj != null && obj.getDotKeKhaiThongTinNoiTru() != null) {
-													// trường hợp đã đăng ký => lấy đợt đăng ký từ thông tin đăng ký nội trú
-											%>
-											<option
-												value="<%=obj.getDotKeKhaiThongTinNoiTru().getMaDotKeKhaiThongTinNoiTru()%>"><%=obj.getDotKeKhaiThongTinNoiTru().getTenDotKeKhaiThongTinNoiTru()%></option>
-											<%
-												}
-											%>
+										<%
+											if (obj == null) {
+												// trường hợp chưa đăng ký => lấy danh sách đợt đăng ký từ bảng đợt đăng ký
+												for (DotKeKhaiThongTinNoiTru dotKeKhaiThongTinNoiTru : listDotKeKhaiThongTinNoiTru) {
+										%>
+										<option
+											value="<%=dotKeKhaiThongTinNoiTru.getMaDotKeKhaiThongTinNoiTru()%>"><%=dotKeKhaiThongTinNoiTru.getTenDotKeKhaiThongTinNoiTru()%></option>
+										<%
+											}
+											}
+											if (obj != null && obj.getDotKeKhaiThongTinNoiTru() != null) {
+												// trường hợp đã đăng ký => lấy đợt đăng ký từ thông tin đăng ký
+										%>
+										<option
+											value="<%=obj.getDotKeKhaiThongTinNoiTru().getMaDotKeKhaiThongTinNoiTru()%>"><%=obj.getDotKeKhaiThongTinNoiTru().getTenDotKeKhaiThongTinNoiTru()%></option>
+										<%
+											}
+										%>
 									</select>
+								</div>
+								<div class="form-group">
+									<label>Phòng <span class="text-danger">(*)</span></label> <select
+										class="form-control" name="maPhong"
+										<%=(modeView ? " disabled " : "")%> required="required">
+										<%
+											ObjectDAO dao_phong = new DAO_Phong();
+											ArrayList<Phong> listPhong = dao_phong.listAll();
+											for (int i = 0; i < listPhong.size(); i++) {
+												Phong phong = listPhong.get(i);
+												if (obj != null && obj.getPhong() != null
+														&& Integer.parseInt(obj.getPhong().getSoGiuongConTrong()) < Integer
+																.parseInt(obj.getPhong().getSoGiuong())
+														&& obj.getPhong().getMaPhong().equals(phong.maPhong)) {
+										%>
+										<option value="<%=phong.maPhong%>" selected="selected"><%=phong.tenPhong%></option>
+										<%
+											} else {
+										%>
+										<option value="<%=phong.maPhong%>"><%=phong.tenPhong%></option>
+										<%
+											}
+										%>
+										<%
+											}
+										%>
 									</select>
 								</div>
 								<div class="form-group">
@@ -178,74 +202,29 @@
 										value='<%=(obj != null ? Util_Date.dateToString(obj.getNgayDangKy()) : "")%>'
 										<%=(modeView ? "disable" : "")%> required="required">
 								</div>
-								<div class="form-group">
-									<label>Phòng<span class="text-danger">(*)</span></label> <select
-										class="form-control" name="phong"
-										<%=(modeView ? "disable" : "")%> required="required">
-										<%
-										
-											// nếu trong đợt đăng ký nội trú
-											// => liệt kê tất cả danh sách phòng
-											if (isTrongDotKeKhai) {
 
-												ObjectDAO obj_Phong = new DAO_Phong();
-												ArrayList<Phong> listPhong = obj_Phong.listAll();
-												for (Phong phong : listPhong) {
-													String maPhong = phong.getMaPhong();
-													String tenPhong = phong.getTenPhong();
-										%>
-										<option value="<%=maPhong%>-<%=tenPhong%>"
-											<%=obj != null && obj.getMaPhong().equals(phong.getMaPhong()) ? "selected" : ""%>>
-											<%=phong.getTenPhong()%>
-										</option>
-										<%
-											}
-											}
-											if (isTrongDotKeKhai == false && obj != null && obj.getDotKeKhaiThongTinNoiTru() != null) {
-												// nếu đã qua đợt kê khai => nhân viên xóa thông tin phòng
-												// và đã đăng ký nội trú
-												// => lấy thông tin phòng từ thông tin đăng ký phòng
-										%>
-										<option
-											value="<%=obj.getMaPhong() + "-" + obj.getTenPhong()%>"><%=obj.getTenPhong()%></option>
-										<%
-											}
-										%>
-									</select>
-								</div>
 								<div class="form-group">
 									<label>Học kỳ<span class="text-danger">(*)</span></label> <select
-										class="form-control" name="hocKy"
+										class="form-control" name="maHocKy"
 										<%=(modeView ? "disable" : "")%> required="required">
 										<%
-										// nếu trong đợt đăng ký nội trú
-										// => liệt kê tất cả danh sách phòng
-										if(isTrongDotKeKhai){
-											ObjectDAO obj_HocKy = new DAO_HocKy();
-											ArrayList<HocKy> listHocKy = obj_HocKy.listAll();
-											for(HocKy hocKy: listHocKy){
-												String maHocKy = hocKy.getMaHocKy();
-												String tenHocKy = hocKy.getTenHocKy();
-										
+											ObjectDAO dao_hocky = new DAO_HocKy();
+											ArrayList<HocKy> listHocKy = dao_hocky.listAll();
+											for (int i = 0; i < listHocKy.size(); i++) {
+												HocKy hk = listHocKy.get(i);
+												if (obj != null && obj.getHocKy() != null && obj.getHocKy().getMaHocKy().equals(hk.maHocKy)) {
 										%>
-										<option value="<%=maHocKy%>-<%=tenHocKy%>"
-											<%=obj != null && obj.getMaHocKy().equals(hocKy.getMaHocKy()) ? "selected" : "" %>>
-											<%=hocKy.getTenHocKy()%>
-										</option>
+										<option value="<%=hk.maHocKy%>" selected="selected"><%=hk.tenHocKy%></option>
+										<%
+											} else {
+										%>
+										<option value="<%=hk.maHocKy%>"><%=hk.tenHocKy%></option>
 										<%
 											}
-										}
-										if (isTrongDotKeKhai == false && obj != null && obj.getDotKeKhaiThongTinNoiTru() != null) {
-											// nếu đã qua đợt kê khai => nhân viên xóa thông tin phòng
-											// và đã đăng ký nội trú
-											// => lấy thông tin phòng từ thông tin đăng ký phòng
-									%>
-
-										<option
-											value="<%=obj.getMaHocKy() + "-" + obj.getTenHocKy()%>"><%=obj.getTenHocKy()%></option>
+										%>
 										<%
-										}
-									%>
+											}
+										%>
 
 									</select>
 								</div>
@@ -279,4 +258,6 @@
 		</div>
 	</div>
 </form>
-<%session.removeAttribute("msg"); %>
+<%
+	session.removeAttribute("msg");
+%>

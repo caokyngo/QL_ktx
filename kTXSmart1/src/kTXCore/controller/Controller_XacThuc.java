@@ -15,11 +15,45 @@ import kTXCore.modelDao.DAO_NamHoc;
 import kTXCore.modelDao.DAO_TaiKhoan;
 import kTXCore.util.Util_MD5;
 import kTXCore.util.Util_Menu;
+import kTXSm2.model.MatHang;
+import kTXSm2.modelDao.DAO_MatHang;
+import kTXSm3.model.DichVu;
+import kTXSm3.modelDao.DAO_DichVu;
 
 public class Controller_XacThuc {
 	ObjectDAO<TaiKhoan> dao = new DAO_TaiKhoan();
 	String maDangNhap;
 	String matKhau;
+	String duongDanTrangView = "kTXSm2/pages/mathang_sinhviens.jsp";
+	String tenCotTimDoiTuong = "maDichVu";
+	String maDichVu;
+	
+	
+	public String getTenCotTimDoiTuong() {
+		return tenCotTimDoiTuong;
+	}
+
+	public void setTenCotTimDoiTuong(String tenCotTimDoiTuong) {
+		this.tenCotTimDoiTuong = tenCotTimDoiTuong;
+	}
+
+	public String getMaDichVu() {
+		return maDichVu;
+	}
+
+	public void setMaDichVu(String maDichVu) {
+		this.maDichVu = maDichVu;
+	}
+
+	public DichVu getDichVu() {
+		ObjectDAO<DichVu> obj_DichVu = new DAO_DichVu();
+		ArrayList<DichVu> ls_DichVu = obj_DichVu.listByColumns("maDichVu", getMaDichVu());
+		if (ls_DichVu.size() > 0)
+			return ls_DichVu.get(0);
+		else
+			return null;
+
+	}
 
 	public String getMaDangNhap() {
 		return maDangNhap;
@@ -64,4 +98,6 @@ public class Controller_XacThuc {
 		session.invalidate();
 		return "SUCCESS";
 	}
+	
+	
 }

@@ -3,15 +3,19 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.Type;
 
 import kTXCore.model.NhanVien;
+import kTXCore.model.NhomPhanQuyen;
 import kTXCore.model.SinhVien;
 
 @Entity
@@ -26,11 +30,15 @@ public class DonHang implements Comparable<DonHang>{
 	public LoaiDonHang loaiDonHang;
 	@ManyToOne 
 	public TinhTrangDonHang tinhTrangDonHang;
-	public String hoDemNguoiDat;
-	public String tenNguoiDat;
 	public String diaChi;
 	public String soDienThoai;
 	public Date ngayDat;
+	public String soLuong;
+	@ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+	@JoinTable(name = "MatHang_DonHang", joinColumns = {
+			@JoinColumn(name = "maDonHang") }, inverseJoinColumns = { @JoinColumn(name = "maMatHang") })
+	public 	Set<MatHang> mathangs = new HashSet<>();
+	
 	public Double tongTien;
 	public String soDiemDuocTich;
 	@Type(type="text")
@@ -41,25 +49,67 @@ public class DonHang implements Comparable<DonHang>{
 	public DonHang() {
 	}
 
+
+
 	public DonHang(String maDonHang, SinhVien sinhVien, NhanVien nhanVien, LoaiDonHang loaiDonHang,
-			TinhTrangDonHang tinhTrangDonHang, String hoDemNguoiDat, String tenNguoiDat, String diaChi,
-			String soDienThoai, Date ngayDat, Double tongTien, String soDiemDuocTich, String ghiChu,
-			Date thoiGianCapNhat) {
+			TinhTrangDonHang tinhTrangDonHang, String diaChi, String soDienThoai, Date ngayDat, String soLuong,
+			Double tongTien, String soDiemDuocTich, String ghiChu, Date thoiGianCapNhat) {
 		super();
 		this.maDonHang = maDonHang;
 		this.sinhVien = sinhVien;
 		this.nhanVien = nhanVien;
 		this.loaiDonHang = loaiDonHang;
 		this.tinhTrangDonHang = tinhTrangDonHang;
-		this.hoDemNguoiDat = hoDemNguoiDat;
-		this.tenNguoiDat = tenNguoiDat;
 		this.diaChi = diaChi;
 		this.soDienThoai = soDienThoai;
 		this.ngayDat = ngayDat;
+		this.soLuong = soLuong;
 		this.tongTien = tongTien;
 		this.soDiemDuocTich = soDiemDuocTich;
 		this.ghiChu = ghiChu;
 		this.thoiGianCapNhat = thoiGianCapNhat;
+	}
+
+
+
+	public String getDiaChi() {
+		return diaChi;
+	}
+
+	public void setDiaChi(String diaChi) {
+		this.diaChi = diaChi;
+	}
+
+	public String getSoDienThoai() {
+		return soDienThoai;
+	}
+
+	public void setSoDienThoai(String soDienThoai) {
+		this.soDienThoai = soDienThoai;
+	}
+
+	public Date getNgayDat() {
+		return ngayDat;
+	}
+
+	public void setNgayDat(Date ngayDat) {
+		this.ngayDat = ngayDat;
+	}
+
+	public String getSoLuong() {
+		return soLuong;
+	}
+
+	public void setSoLuong(String soLuong) {
+		this.soLuong = soLuong;
+	}
+
+	public Set<MatHang> getMathangs() {
+		return mathangs;
+	}
+
+	public void setMathangs(Set<MatHang> mathangs) {
+		this.mathangs = mathangs;
 	}
 
 	public String getMaDonHang() {
@@ -102,45 +152,7 @@ public class DonHang implements Comparable<DonHang>{
 		this.tinhTrangDonHang = tinhTrangDonHang;
 	}
 
-	public String getHoDemNguoiDat() {
-		return hoDemNguoiDat;
-	}
-
-	public void setHoDemNguoiDat(String hoDemNguoiDat) {
-		this.hoDemNguoiDat = hoDemNguoiDat;
-	}
-
-	public String getTenNguoiDat() {
-		return tenNguoiDat;
-	}
-
-	public void setTenNguoiDat(String tenNguoiDat) {
-		this.tenNguoiDat = tenNguoiDat;
-	}
-
-	public String getDiaChi() {
-		return diaChi;
-	}
-
-	public void setDiaChi(String diaChi) {
-		this.diaChi = diaChi;
-	}
-
-	public String getSoDienThoai() {
-		return soDienThoai;
-	}
-
-	public void setSoDienThoai(String soDienThoai) {
-		this.soDienThoai = soDienThoai;
-	}
-
-	public Date getNgayDat() {
-		return ngayDat;
-	}
-
-	public void setNgayDat(Date ngayDat) {
-		this.ngayDat = ngayDat;
-	}
+	
 
 	public Double getTongTien() {
 		return tongTien;
@@ -180,7 +192,6 @@ public class DonHang implements Comparable<DonHang>{
 		int result = 1;
 		result = prime * result + ((diaChi == null) ? 0 : diaChi.hashCode());
 		result = prime * result + ((ghiChu == null) ? 0 : ghiChu.hashCode());
-		result = prime * result + ((hoDemNguoiDat == null) ? 0 : hoDemNguoiDat.hashCode());
 		result = prime * result + ((loaiDonHang == null) ? 0 : loaiDonHang.hashCode());
 		result = prime * result + ((maDonHang == null) ? 0 : maDonHang.hashCode());
 		result = prime * result + ((ngayDat == null) ? 0 : ngayDat.hashCode());
@@ -188,7 +199,7 @@ public class DonHang implements Comparable<DonHang>{
 		result = prime * result + ((sinhVien == null) ? 0 : sinhVien.hashCode());
 		result = prime * result + ((soDiemDuocTich == null) ? 0 : soDiemDuocTich.hashCode());
 		result = prime * result + ((soDienThoai == null) ? 0 : soDienThoai.hashCode());
-		result = prime * result + ((tenNguoiDat == null) ? 0 : tenNguoiDat.hashCode());
+		result = prime * result + ((soLuong == null) ? 0 : soLuong.hashCode());
 		result = prime * result + ((thoiGianCapNhat == null) ? 0 : thoiGianCapNhat.hashCode());
 		result = prime * result + ((tinhTrangDonHang == null) ? 0 : tinhTrangDonHang.hashCode());
 		result = prime * result + ((tongTien == null) ? 0 : tongTien.hashCode());
@@ -213,11 +224,6 @@ public class DonHang implements Comparable<DonHang>{
 			if (other.ghiChu != null)
 				return false;
 		} else if (!ghiChu.equals(other.ghiChu))
-			return false;
-		if (hoDemNguoiDat == null) {
-			if (other.hoDemNguoiDat != null)
-				return false;
-		} else if (!hoDemNguoiDat.equals(other.hoDemNguoiDat))
 			return false;
 		if (loaiDonHang == null) {
 			if (other.loaiDonHang != null)
@@ -254,10 +260,10 @@ public class DonHang implements Comparable<DonHang>{
 				return false;
 		} else if (!soDienThoai.equals(other.soDienThoai))
 			return false;
-		if (tenNguoiDat == null) {
-			if (other.tenNguoiDat != null)
+		if (soLuong == null) {
+			if (other.soLuong != null)
 				return false;
-		} else if (!tenNguoiDat.equals(other.tenNguoiDat))
+		} else if (!soLuong.equals(other.soLuong))
 			return false;
 		if (thoiGianCapNhat == null) {
 			if (other.thoiGianCapNhat != null)
@@ -280,10 +286,10 @@ public class DonHang implements Comparable<DonHang>{
 	@Override
 	public String toString() {
 		return "DonHang [maDonHang=" + maDonHang + ", sinhVien=" + sinhVien + ", nhanVien=" + nhanVien
-				+ ", loaiDonHang=" + loaiDonHang + ", tinhTrangDonHang=" + tinhTrangDonHang + ", hoDemNguoiDat="
-				+ hoDemNguoiDat + ", tenNguoiDat=" + tenNguoiDat + ", diaChi=" + diaChi + ", soDienThoai=" + soDienThoai
-				+ ", ngayDat=" + ngayDat + ", tongTien=" + tongTien + ", soDiemDuocTich=" + soDiemDuocTich + ", ghiChu="
-				+ ghiChu + ", thoiGianCapNhat=" + thoiGianCapNhat + "]";
+				+ ", loaiDonHang=" + loaiDonHang + ", tinhTrangDonHang=" + tinhTrangDonHang + ", diaChi=" + diaChi
+				+ ", soDienThoai=" + soDienThoai + ", ngayDat=" + ngayDat + ", soLuong=" + soLuong + ", tongTien="
+				+ tongTien + ", soDiemDuocTich=" + soDiemDuocTich + ", ghiChu=" + ghiChu + ", thoiGianCapNhat="
+				+ thoiGianCapNhat + "]";
 	}
 
 	@Override
