@@ -36,9 +36,9 @@
 	// 	DonHang obj_donhang = session.getAttribute("obj_donhang") != null
 	// 			? (DonHang) session.getAttribute("obj_donhang")
 	// 			: null;
-	// 	MatHang obj_mathang = session.getAttribute("obj_mathang") != null
-	// 			? (MatHang) session.getAttribute("obj_mathang")
-	// 			: null;
+	MatHang obj_mathang = session.getAttribute("obj_mathang") != null
+			? (MatHang) session.getAttribute("obj_mathang")
+			: null;
 %>
 <div class="row">
 	<div class="col-lg-12">
@@ -76,12 +76,12 @@
 								<div class="form-group">
 									<label>Mã mặt hàng <span class="text-danger">(*)</span></label>
 									<%
-										Set<MatHang> matHangSet = new HashSet<>();
-										if (obj != null && obj.getMathangs() != null)
-											matHangSet = obj.mathangs;
+										// 										Set<MatHang> matHangSet = new HashSet<>();
+										// 										if (obj_mathang != null && obj_mathang.getMathangs() != null)
+										// 											matHangSet = obj.mathangs;
 									%>
 									<input class="form-control" name="maMatHang"
-										value="<%=(obj != null && obj.getMathangs() != null ? obj.getMathangs() : "")%>"
+										value='<%=(obj_mathang != null ? obj_mathang.getMaMatHang() : "")%>'
 										readonly required="required">
 								</div>
 								<div class="form-group">
@@ -95,7 +95,7 @@
 									%>
 									<label>Mã sinh viên <span class="text-danger">(*)</span></label>
 									<input class="form-control" name="maSinhVien" readonly
-										value="<%=obj != null && obj.getSinhVien() != null ? obj.getSinhVien().getMaSinhVien() : ""%> "
+										value='<%=obj != null && obj.getSinhVien() != null ? obj.getSinhVien().getMaSinhVien() : sinhVien.getMaSinhVien()%> '
 										required="required">
 
 									<%
@@ -106,12 +106,23 @@
 											if (listTaiKhoannv.size() > 0) {
 												TaiKhoanNhanVien taiKhoannv = listTaiKhoannv.get(0);
 												NhanVien nhanVien = taiKhoannv.getNhanVien();
+												
+												if(obj != null && obj.getNhanVien() != null){
 									%>
 									<label>Mã nhân viên <span class="text-danger">(*)</span></label>
 									<input class="form-control" name="maNhanVien" readonly
-										value="<%=obj != null && obj.getNhanVien() != null ? obj.getNhanVien().getMaNhanVien() : ""%> "
+										value='<%=obj != null && obj.getNhanVien() != null ? obj.getNhanVien().getMaNhanVien() : nhanVien.getMaNhanVien()%> '
 										required="required">
 									<%
+												}
+												else if(obj != null && obj.getSinhVien() != null){
+													%>
+									<label>Mã sinh viên <span class="text-danger">(*)</span></label>
+									<input class="form-control" name="maSinhVien" readonly
+										value='<%=obj != null && obj.getSinhVien() != null ? obj.getSinhVien().getMaSinhVien() : ""%> '
+										required="required">
+									<% 
+												}
 										}
 										}
 									%>
@@ -175,13 +186,13 @@
 								<div class="form-group">
 									<label>Địa chỉ</label> <input class="form-control"
 										name="diaChi"
-										value="<%=(obj != null ? obj.getDiaChi() : "")%>"
+										value='<%=(obj != null ? obj.getDiaChi() : "")%>'
 										<%=(modeView ? " readonly " : "")%>>
 								</div>
 								<div class="form-group">
 									<label>Số điện thoại</label> <input class="form-control"
 										name="soDienThoai"
-										value="<%=(obj != null ? obj.getSoDienThoai() : "")%>"
+										value='<%=(obj != null ? obj.getSoDienThoai() : "")%>'
 										<%=(modeView ? " readonly " : "")%>>
 								</div>
 								<div class="form-group">
@@ -194,13 +205,13 @@
 								<div class="form-group">
 									<label>Số lượng</label> <input class="form-control"
 										name="soLuong"
-										value="<%=(obj != null && obj.getSoLuong() != null ? obj.getSoLuong() : "")%>"
+										value='<%=(obj != null && obj.getSoLuong() != null ? obj.getSoLuong() : "")%>'
 										<%=(modeView ? " readonly " : "")%>>
 								</div>
 								<div class="form-group">
 									<label>Tổng tiền</label> <input class="form-control"
 										name="s_tongTien" readonly required="required"
-										value="<%=(obj != null && obj.getTongTien() != null ? obj.getTongTien() : "")%>">
+										value='<%=(obj != null && obj.getTongTien() != null ? obj.getTongTien() : "")%>'>
 								</div>
 
 

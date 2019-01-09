@@ -13,7 +13,7 @@ import kTXCore.controller.ZEController;
 import kTXCore.dao.ObjectDAO;
 import kTXCore.util.Util_Date;
 import kTXSm2.model.KhuyenMai;
-import kTXSm2.model.LoaiDonHang;
+
 import kTXSm2.model.TinhTrangDonHang;
 import kTXSm2.modelDao.DAO_KhuyenMai;
 

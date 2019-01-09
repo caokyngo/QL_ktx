@@ -818,48 +818,7 @@
 		</action>
 		<!-- kết thúc xử lý tình trạng đơn hàng -->
 
-		<!-- xử lý loại đơn hàng -->
-		<!-- tải lại loại đơn hàng -->
-		<action name="taiLaiLoaiDonHang" class="kTXSm2.controller.Controller_LoaiDonHang"
-			method="refresh">
-			<result name="SUCCESS">/index.jsp</result>
-			<result name="FAIL">/index.jsp</result>
-		</action>
-		<!-- thêm mới loại đơn hàng -->
-		<action name="themMoiLoaiDonHang" class="kTXSm2.controller.Controller_LoaiDonHang"
-			method="addNew">
-			<result name="SUCCESS">/index.jsp</result>
-			<result name="FAIL">/index.jsp</result>
-		</action>
-
-		<!-- lưu thông tin loại đơn hàng -->
-		<action name="luuDuLieuLoaiDonHang" class="kTXSm2.controller.Controller_LoaiDonHang"
-			method="saveOrUpdate">
-			<result name="SUCCESS">/index.jsp</result>
-			<result name="FAIL">/index.jsp</result>
-		</action>
-
-		<!-- xem chi tiết loại đơn hàng -->
-		<action name="xemChiTietLoaiDonHang" class="kTXSm2.controller.Controller_LoaiDonHang"
-			method="viewDetail">
-			<result name="SUCCESS">/index.jsp</result>
-			<result name="FAIL">/index.jsp</result>
-		</action>
-
-		<!-- xem chi tiết và chỉnh sửa loại đơn hàng -->
-		<action name="xemChiTietVaChinhSuaLoaiDonHang" class="kTXSm2.controller.Controller_LoaiDonHang"
-			method="viewDetailAndEdit">
-			<result name="SUCCESS">/index.jsp</result>
-			<result name="FAIL">/index.jsp</result>
-		</action>
-
-		<!-- xóa loại đơn hàng -->
-		<action name="deleteLoaiDonHang" class="kTXSm2.controller.Controller_LoaiDonHang"
-			method="delete">
-			<result name="SUCCESS">/index.jsp</result>
-			<result name="FAIL">/index.jsp</result>
-		</action>
-		<!-- kết thúc xử lý loại đơn hàng -->
+		
 
 		<!-- xử lý nhà cung cấp -->
 		<!-- tải lại nhà cung cấp -->

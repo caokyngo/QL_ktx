@@ -102,7 +102,7 @@
 			<a class="navbar-brand" href="index.jsp" style="color: white">
 				&nbsp; <img src="content/images/logo.png"
 				style="display: inline-block;" width="30px" height="30px" alt="" />
-				<span style="display: inline-block;"> UTC2 Smart 1.0 </span>
+				<span style="display: inline-block;"> kTX Smart 1.0 </span>
 			</a>
 		</div>
 		<div id="navbar" class="collapse navbar-collapse"

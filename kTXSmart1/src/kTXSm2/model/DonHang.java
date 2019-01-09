@@ -26,8 +26,7 @@ public class DonHang implements Comparable<DonHang>{
 	public SinhVien sinhVien;
 	@ManyToOne
 	public NhanVien nhanVien;
-	@ManyToOne
-	public LoaiDonHang loaiDonHang;
+	
 	@ManyToOne 
 	public TinhTrangDonHang tinhTrangDonHang;
 	public String diaChi;
@@ -51,14 +50,14 @@ public class DonHang implements Comparable<DonHang>{
 
 
 
-	public DonHang(String maDonHang, SinhVien sinhVien, NhanVien nhanVien, LoaiDonHang loaiDonHang,
+	public DonHang(String maDonHang, SinhVien sinhVien, NhanVien nhanVien, 
 			TinhTrangDonHang tinhTrangDonHang, String diaChi, String soDienThoai, Date ngayDat, String soLuong,
 			Double tongTien, String soDiemDuocTich, String ghiChu, Date thoiGianCapNhat) {
 		super();
 		this.maDonHang = maDonHang;
 		this.sinhVien = sinhVien;
 		this.nhanVien = nhanVien;
-		this.loaiDonHang = loaiDonHang;
+		
 		this.tinhTrangDonHang = tinhTrangDonHang;
 		this.diaChi = diaChi;
 		this.soDienThoai = soDienThoai;
@@ -136,13 +135,7 @@ public class DonHang implements Comparable<DonHang>{
 		this.nhanVien = nhanVien;
 	}
 
-	public LoaiDonHang getLoaiDonHang() {
-		return loaiDonHang;
-	}
-
-	public void setLoaiDonHang(LoaiDonHang loaiDonHang) {
-		this.loaiDonHang = loaiDonHang;
-	}
+	
 
 	public TinhTrangDonHang getTinhTrangDonHang() {
 		return tinhTrangDonHang;
@@ -192,7 +185,7 @@ public class DonHang implements Comparable<DonHang>{
 		int result = 1;
 		result = prime * result + ((diaChi == null) ? 0 : diaChi.hashCode());
 		result = prime * result + ((ghiChu == null) ? 0 : ghiChu.hashCode());
-		result = prime * result + ((loaiDonHang == null) ? 0 : loaiDonHang.hashCode());
+		
 		result = prime * result + ((maDonHang == null) ? 0 : maDonHang.hashCode());
 		result = prime * result + ((ngayDat == null) ? 0 : ngayDat.hashCode());
 		result = prime * result + ((nhanVien == null) ? 0 : nhanVien.hashCode());
@@ -225,11 +218,7 @@ public class DonHang implements Comparable<DonHang>{
 				return false;
 		} else if (!ghiChu.equals(other.ghiChu))
 			return false;
-		if (loaiDonHang == null) {
-			if (other.loaiDonHang != null)
-				return false;
-		} else if (!loaiDonHang.equals(other.loaiDonHang))
-			return false;
+		
 		if (maDonHang == null) {
 			if (other.maDonHang != null)
 				return false;
@@ -286,7 +275,7 @@ public class DonHang implements Comparable<DonHang>{
 	@Override
 	public String toString() {
 		return "DonHang [maDonHang=" + maDonHang + ", sinhVien=" + sinhVien + ", nhanVien=" + nhanVien
-				+ ", loaiDonHang=" + loaiDonHang + ", tinhTrangDonHang=" + tinhTrangDonHang + ", diaChi=" + diaChi
+				+ ",  tinhTrangDonHang=" + tinhTrangDonHang + ", diaChi=" + diaChi
 				+ ", soDienThoai=" + soDienThoai + ", ngayDat=" + ngayDat + ", soLuong=" + soLuong + ", tongTien="
 				+ tongTien + ", soDiemDuocTich=" + soDiemDuocTich + ", ghiChu=" + ghiChu + ", thoiGianCapNhat="
 				+ thoiGianCapNhat + "]";

@@ -95,8 +95,7 @@
 										name="myFile"
 										value="<%=(obj != null && obj.getHinhAnh() != null ? obj.getHinhAnh() : "")%>"
 										type="<%=(modeView ? "hidden" : "file")%>"><img
-										src="<%=obj != null  && modeView ? "kTXCore/images/nhanviens/" + obj.getHinhAnh()
-					: ""%>"
+										src="<%=obj != null && modeView ? "kTXCore/images/nhanviens/" + obj.getHinhAnh() : ""%>"
 										height="<%=modeView ? 135 : 1%>"
 										width="<%=modeView ? 135 : 1%>">
 								</div>

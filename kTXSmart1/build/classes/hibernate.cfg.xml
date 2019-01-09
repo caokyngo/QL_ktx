@@ -45,7 +45,7 @@
 		<!-- kTXSm2 -->
 		<mapping class="kTXSm2.model.DonHang" />
 		<mapping class="kTXSm2.model.KhuyenMai" />
-		<mapping class="kTXSm2.model.LoaiDonHang" />
+		
 		<mapping class="kTXSm2.model.MatHang" />
 		<mapping class="kTXSm2.model.NhaCungCap" />
 		<mapping class="kTXSm2.model.TinhTrangDonHang" />

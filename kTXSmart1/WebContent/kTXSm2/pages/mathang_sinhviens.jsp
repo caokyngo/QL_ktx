@@ -53,6 +53,13 @@
 			list = dao.pagination("1=1 order by dichVu desc", (long) recordPerPage,
 					(long) Long.parseLong(pid) * recordPerPage);
 	}
+	
+%>
+<%
+	ObjectDAO objdao_TaiKhoan = new DAO_TaiKhoan();
+	
+	ArrayList<TaiKhoan> listTaiKhoan = objdao_TaiKhoan.listAll();
+	
 %>
 <div class="row">
 	<div class="col-lg-12">
@@ -116,6 +123,8 @@
 			for (MatHang mh : list) {
 				String maDoiTuong = mh.getMaMatHang();
 				String tenDoiTuong = mh.getTenMatHang();
+				
+				
 		%>
 		<div class="col-md-3 md-col">
 			<div class="col-md">
@@ -127,7 +136,7 @@
 						<a href="xemChiTiet<%=tenLop%>.action?maobj=<%=maDoiTuong%>"><%=mh.getTenMatHang()%></a>
 					</h5>
 					<div class="white">
-						<a href="themMoiDonHang.action"
+						<a href="themMoiDonHang.action?maobj_mathang=<%=maDoiTuong %>"
 							class="button">Mua
 							ngay</a>
 						<p class="dollar">

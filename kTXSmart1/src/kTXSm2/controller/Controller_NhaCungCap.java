@@ -11,7 +11,7 @@ import org.apache.struts2.ServletActionContext;
 
 import kTXCore.controller.ZEController;
 import kTXCore.dao.ObjectDAO;
-import kTXSm2.model.LoaiDonHang;
+
 import kTXSm2.model.NhaCungCap;
 import kTXSm2.model.TinhTrangDonHang;
 import kTXSm2.modelDao.DAO_NhaCungCap;

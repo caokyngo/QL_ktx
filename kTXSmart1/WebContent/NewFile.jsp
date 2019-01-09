@@ -1,3 +1,4 @@
+<%@page import="kTXSm3.model.DichVu"%>
 <%@page import="kTXCore.model.TaiKhoanSinhVien"%>
 <%@page import="kTXCore.modelDao.DAO_SinhVien"%>
 <%@page import="kTXCore.model.SinhVien"%>
@@ -26,37 +27,37 @@
 </head>
 <body>
 	<%
-		DonVi dv = new DonVi();
-		dv.setMaDonVi("DV01");
-		dv.setTenDonVi("Bo mon CNTT");
-		dv.setDonViCha(null);
-		ObjectDAO dao1 = new DAO_DonVi();
-		dao1.saveOrUpdate(dv);
+			 DonVi dv = new DonVi();
+			dv.setMaDonVi("DV01");
+			dv.setTenDonVi("Bo mon CNTT");
+			dv.setDonViCha(null);
+			ObjectDAO dao1 = new DAO_DonVi();
+			dao1.saveOrUpdate(dv);
 
-		NhanVien admin = new NhanVien();
-		admin.setMaNhanVien("001");
-		admin.setTenNhanVien("Lê Nhật Tùng");
-		admin.setEmail("tungit07@gmail.com");
-		admin.setDonVi(dv);
-		ObjectDAO dao2 = new DAO_NhanVien();
-		dao2.saveOrUpdate(admin);
+			NhanVien admin = new NhanVien();
+			admin.setMaNhanVien("001");
+			admin.setTenNhanVien("Lê Nhật Tùng");
+			admin.setEmail("tungit07@gmail.com");
+			admin.setDonVi(dv);
+			ObjectDAO dao2 = new DAO_NhanVien();
+			dao2.saveOrUpdate(admin);
 
-		NhanVien giangVien = new NhanVien();
-		giangVien.setMaNhanVien("002");
-		giangVien.setTenNhanVien("Nguyễn Xuân Thiện");
-		giangVien.setEmail("xuanthien@gmail.com");
-		giangVien.setDonVi(dv);
-		dao2.saveOrUpdate(giangVien);
+			NhanVien giangVien = new NhanVien();
+			giangVien.setMaNhanVien("002");
+			giangVien.setTenNhanVien("Nguyễn Xuân Thiện");
+			giangVien.setEmail("xuanthien@gmail.com");
+			giangVien.setDonVi(dv);
+			dao2.saveOrUpdate(giangVien);
 
-		SinhVien sinhVien = new SinhVien();
-		sinhVien.setMaSinhVien("5551074004");
-		sinhVien.setHoDem("Hồ Văn");
-		sinhVien.setTen("Bi");
-		sinhVien.setEmail("hobi2908@gmail.com");
+			SinhVien sinhVien = new SinhVien();
+			sinhVien.setMaSinhVien("5551074004");
+			sinhVien.setHoDem("Hồ Văn");
+			sinhVien.setTen("Bi");
+			sinhVien.setEmail("hobi2908@gmail.com");
 		ObjectDAO dao_sinhVien = new DAO_SinhVien();
-		dao_sinhVien.saveOrUpdate(sinhVien);
+		dao_sinhVien.saveOrUpdate(sinhVien); 
 
-		ObjectDAO daochucnang = new DAO_ChucNang();
+		 ObjectDAO daochucnang = new DAO_ChucNang();
 
 		ChucNang CN_QuanLyThongTinCoBan = new ChucNang();
 		CN_QuanLyThongTinCoBan.setMaChucNang("kTXCore_0_0_CN_QuanLyThongTinCoBan");
@@ -210,109 +211,13 @@
 		CN_QuanLyPhong.setChucNangCha(CN_QuanLyCoSoVatChat);
 		daochucnang.saveOrUpdate(CN_QuanLyPhong);
 
-		ChucNang CN_ThemThongTinPhong = new ChucNang();
-		CN_ThemThongTinPhong.setMaChucNang("kTXSm1_1_3_CN_ThemThongTinPhong");
-		CN_ThemThongTinPhong.setDuongDan("kTXSm1/pages/phong.jsp");
-		CN_ThemThongTinPhong.setHinhAnh("null");
-		CN_ThemThongTinPhong.setTenHienThi("Thêm thông tin phòng");
-		CN_ThemThongTinPhong.setChucNangCha(CN_QuanLyCoSoVatChat);
-		daochucnang.saveOrUpdate(CN_ThemThongTinPhong);
-
-		ChucNang CN_QuanLyMatHang = new ChucNang();
-		CN_QuanLyMatHang.setMaChucNang("kTXSm2_2_0_CN_QuanLyMatHang");
-		CN_QuanLyMatHang.setDuongDan("null");
-		CN_QuanLyMatHang.setHinhAnh("fa fa-university");
-		CN_QuanLyMatHang.setTenHienThi("Quản lý dịch vụ");
-		CN_QuanLyMatHang.setChucNangCha(null);
-		daochucnang.saveOrUpdate(CN_QuanLyMatHang);
-
-		ChucNang CN_ThemThongTinMatHang = new ChucNang();
-		CN_ThemThongTinMatHang.setMaChucNang("kTXSm2_2_1_CN_ThemThongTinMatHang");
-		CN_ThemThongTinMatHang.setDuongDan("kTXSm2/pages/mathang.jsp");
-		CN_ThemThongTinMatHang.setHinhAnh("null");
-		CN_ThemThongTinMatHang.setTenHienThi("Thêm thông tin mặt hàng");
-		CN_ThemThongTinMatHang.setChucNangCha(CN_QuanLyMatHang);
-		daochucnang.saveOrUpdate(CN_ThemThongTinMatHang);
-
-		ChucNang CN_QuanLyThongTinMatHang = new ChucNang();
-		CN_QuanLyThongTinMatHang.setMaChucNang("kTXSm2_2_2_CN_QuanLyMatHang");
-		CN_QuanLyThongTinMatHang.setDuongDan("kTXSm2/pages/mathangs.jsp");
-		CN_QuanLyThongTinMatHang.setHinhAnh("null");
-		CN_QuanLyThongTinMatHang.setTenHienThi("Quản lý thông tin mặt hàng");
-		CN_QuanLyThongTinMatHang.setChucNangCha(CN_QuanLyMatHang);
-		daochucnang.saveOrUpdate(CN_QuanLyThongTinMatHang);
-
-		ChucNang CN_QuanLyDonHang = new ChucNang();
-		CN_QuanLyDonHang.setMaChucNang("kTXSm2_3_0_CN_QuanLyDonHang");
-		CN_QuanLyDonHang.setDuongDan("null");
-		CN_QuanLyDonHang.setHinhAnh("null");
-		CN_QuanLyDonHang.setTenHienThi("Quản lý đơn hàng");
-		CN_QuanLyDonHang.setChucNangCha(null);
-		daochucnang.saveOrUpdate(CN_QuanLyDonHang);
-
-		ChucNang CN_QuanLyThongTinDonHang = new ChucNang();
-		CN_QuanLyThongTinDonHang.setMaChucNang("kTXSm2_3_1_CN_QuanLyDonHang");
-		CN_QuanLyThongTinDonHang.setDuongDan("kTXSm2/pages/donhangs.jsp");
-		CN_QuanLyThongTinDonHang.setHinhAnh("null");
-		CN_QuanLyThongTinDonHang.setTenHienThi("Quản lý thông tin đơn hàng");
-		CN_QuanLyThongTinDonHang.setChucNangCha(CN_QuanLyDonHang);
-		daochucnang.saveOrUpdate(CN_QuanLyThongTinDonHang);
-
-		ChucNang CN_ThemDonHang = new ChucNang();
-		CN_ThemDonHang.setMaChucNang("kTXSm2_3_2_CN_ThongTinDonHang");
-		CN_ThemDonHang.setDuongDan("kTXSm2/pages/donhang.jsp");
-		CN_ThemDonHang.setHinhAnh("null");
-		CN_ThemDonHang.setTenHienThi("thông tin đơn hàng");
-		CN_ThemDonHang.setChucNangCha(CN_QuanLyDonHang);
-		daochucnang.saveOrUpdate(CN_ThemDonHang);
-
-		ChucNang CN_QuanLyNhaCungCap = new ChucNang();
-		CN_QuanLyNhaCungCap.setMaChucNang("kTXSm2_4_0_CN_QuanLyNhaCungCap");
-		CN_QuanLyNhaCungCap.setDuongDan("null");
-		CN_QuanLyNhaCungCap.setHinhAnh("null");
-		CN_QuanLyNhaCungCap.setTenHienThi("Quản lý nhà cung cấp");
-		CN_QuanLyNhaCungCap.setChucNangCha(null);
-		daochucnang.saveOrUpdate(CN_QuanLyNhaCungCap);
-
-		ChucNang CN_QuanLyThongTinNhaCungCap = new ChucNang();
-		CN_QuanLyThongTinNhaCungCap.setMaChucNang("kTXSm2_4_1_CN_QuanLyThongTinNhaCungCap");
-		CN_QuanLyThongTinNhaCungCap.setDuongDan("kTXSm2/pages/nhacungcaps.jsp");
-		CN_QuanLyThongTinNhaCungCap.setHinhAnh("null");
-		CN_QuanLyThongTinNhaCungCap.setTenHienThi("Quản lý nhà cung cấp");
-		CN_QuanLyThongTinNhaCungCap.setChucNangCha(CN_QuanLyNhaCungCap);
-		daochucnang.saveOrUpdate(CN_QuanLyThongTinNhaCungCap);
-
-		ChucNang CN_ThemNhaCungCap = new ChucNang();
-		CN_ThemNhaCungCap.setMaChucNang("kTXSm2_4_2_CN_ThemNhaCungCap");
-		CN_ThemNhaCungCap.setDuongDan("kTXSm2/pages/nhacungcap.jsp");
-		CN_ThemNhaCungCap.setHinhAnh("null");
-		CN_ThemNhaCungCap.setTenHienThi("Thêm thông tin nhà cung cấp");
-		CN_ThemNhaCungCap.setChucNangCha(CN_QuanLyNhaCungCap);
-		daochucnang.saveOrUpdate(CN_ThemNhaCungCap);
-
-		ChucNang CN_QuanLyLoaiDonHang = new ChucNang();
-		CN_QuanLyLoaiDonHang.setMaChucNang("kTXSm2_3_3_CN_QuanLyLoaiDonHang");
-		CN_QuanLyLoaiDonHang.setDuongDan("kTXSm2/pages/loaidonhangs.jsp");
-		CN_QuanLyLoaiDonHang.setHinhAnh("null");
-		CN_QuanLyLoaiDonHang.setTenHienThi("Quản lý loại đơn hàng");
-		CN_QuanLyLoaiDonHang.setChucNangCha(CN_QuanLyDonHang);
-		daochucnang.saveOrUpdate(CN_QuanLyLoaiDonHang);
-
-		ChucNang CN_QuanLyTinhTrangDonHang = new ChucNang();
-		CN_QuanLyTinhTrangDonHang.setMaChucNang("kTXSm2_3_4_CN_QuanLyTinhTrangDonHang");
-		CN_QuanLyTinhTrangDonHang.setDuongDan("kTXSm2/pages/tinhtrangdonhangs.jsp");
-		CN_QuanLyTinhTrangDonHang.setHinhAnh("null");
-		CN_QuanLyTinhTrangDonHang.setTenHienThi("Quản lý tình trạng đơn hàng");
-		CN_QuanLyTinhTrangDonHang.setChucNangCha(CN_QuanLyDonHang);
-		daochucnang.saveOrUpdate(CN_QuanLyTinhTrangDonHang);
-
-		ChucNang CN_QuanLyChiTietDonHang = new ChucNang();
-		CN_QuanLyChiTietDonHang.setMaChucNang("kTXSm2_3_5_CN_QuanLyChiTietDonHang");
-		CN_QuanLyChiTietDonHang.setDuongDan("kTXSm2/pages/chitietdonhangs.jsp");
-		CN_QuanLyChiTietDonHang.setHinhAnh("null");
-		CN_QuanLyChiTietDonHang.setTenHienThi("Quản lý chi tiết đơn hàng");
-		CN_QuanLyChiTietDonHang.setChucNangCha(CN_QuanLyDonHang);
-		daochucnang.saveOrUpdate(CN_QuanLyChiTietDonHang);
+		ChucNang CN_DichVuGTGT = new ChucNang();
+		CN_DichVuGTGT.setMaChucNang("kTXSm2_5_0_CN_DichVuGTGT");
+		CN_DichVuGTGT.setDuongDan("kTXSm2/pages/mathang_sinhviens.jsp");
+		CN_DichVuGTGT.setHinhAnh("null");
+		CN_DichVuGTGT.setTenHienThi("Dịch vụ GTGT");
+		CN_DichVuGTGT.setChucNangCha(null);
+		daochucnang.saveOrUpdate(CN_DichVuGTGT);
 
 		ChucNang CN_QuanLyDichVuGTGT = new ChucNang();
 		CN_QuanLyDichVuGTGT.setMaChucNang("kTXSm2_5_0_CN_QuanLyDichVuGTGT");
@@ -330,13 +235,37 @@
 		CN_QuanLyThongTinDichVu.setChucNangCha(CN_QuanLyDichVuGTGT);
 		daochucnang.saveOrUpdate(CN_QuanLyThongTinDichVu);
 
-		ChucNang CN_ThemDichVu = new ChucNang();
-		CN_ThemDichVu.setMaChucNang("kTXSm3_5_2_CN_ThemTinDichVu");
-		CN_ThemDichVu.setDuongDan("kTXSm3/pages/dichvu.jsp");
-		CN_ThemDichVu.setHinhAnh("fa fa-university");
-		CN_ThemDichVu.setTenHienThi("Thêm thông tin dịch vụ");
-		CN_ThemDichVu.setChucNangCha(CN_QuanLyDichVuGTGT);
-		daochucnang.saveOrUpdate(CN_ThemDichVu);
+		ChucNang CN_QuanLyMatHang = new ChucNang();
+		CN_QuanLyMatHang.setMaChucNang("kTXSm2_2_0_CN_QuanLyMatHang");
+		CN_QuanLyMatHang.setDuongDan("kTXSm2/pages/mathangs.jsp");
+		CN_QuanLyMatHang.setHinhAnh("fa fa-university");
+		CN_QuanLyMatHang.setTenHienThi("Quản lý mặt hàng");
+		CN_QuanLyMatHang.setChucNangCha(CN_QuanLyDichVuGTGT);
+		daochucnang.saveOrUpdate(CN_QuanLyMatHang);
+
+		ChucNang CN_QuanLyDonHang = new ChucNang();
+		CN_QuanLyDonHang.setMaChucNang("kTXSm2_3_0_CN_QuanLyDonHang");
+		CN_QuanLyDonHang.setDuongDan("kTXSm2/pages/donhangs.jsp");
+		CN_QuanLyDonHang.setHinhAnh("null");
+		CN_QuanLyDonHang.setTenHienThi("Quản lý đơn hàng");
+		CN_QuanLyDonHang.setChucNangCha(CN_QuanLyDichVuGTGT);
+		daochucnang.saveOrUpdate(CN_QuanLyDonHang);
+
+		ChucNang CN_QuanLyNhaCungCap = new ChucNang();
+		CN_QuanLyNhaCungCap.setMaChucNang("kTXSm2_4_0_CN_QuanLyNhaCungCap");
+		CN_QuanLyNhaCungCap.setDuongDan("kTXSm2/pages/nhacungcaps.jsp");
+		CN_QuanLyNhaCungCap.setHinhAnh("null");
+		CN_QuanLyNhaCungCap.setTenHienThi("Quản lý nhà cung cấp");
+		CN_QuanLyNhaCungCap.setChucNangCha(CN_QuanLyDichVuGTGT);
+		daochucnang.saveOrUpdate(CN_QuanLyNhaCungCap);
+
+		ChucNang CN_QuanLyTinhTrangDonHang = new ChucNang();
+		CN_QuanLyTinhTrangDonHang.setMaChucNang("kTXSm2_3_4_CN_QuanLyTinhTrangDonHang");
+		CN_QuanLyTinhTrangDonHang.setDuongDan("kTXSm2/pages/tinhtrangdonhangs.jsp");
+		CN_QuanLyTinhTrangDonHang.setHinhAnh("null");
+		CN_QuanLyTinhTrangDonHang.setTenHienThi("Quản lý tình trạng đơn hàng");
+		CN_QuanLyTinhTrangDonHang.setChucNangCha(CN_QuanLyDichVuGTGT);
+		daochucnang.saveOrUpdate(CN_QuanLyTinhTrangDonHang);
 
 		ChucNang CN_QuanLyChuongTrinhKhuyenMai = new ChucNang();
 		CN_QuanLyChuongTrinhKhuyenMai.setMaChucNang("kTXSm2_5_3_CN_QuanLyChuongTrinhKhuyenMai");
@@ -346,29 +275,13 @@
 		CN_QuanLyChuongTrinhKhuyenMai.setChucNangCha(CN_QuanLyDichVuGTGT);
 		daochucnang.saveOrUpdate(CN_QuanLyChuongTrinhKhuyenMai);
 
-		ChucNang CN_XemThongTinChuongTrinhKhuyenMai = new ChucNang();
-		CN_XemThongTinChuongTrinhKhuyenMai.setMaChucNang("kTXSm2_5_4_ThongTinChuongTrinhKhuyenMai");
-		CN_XemThongTinChuongTrinhKhuyenMai.setDuongDan("kTXSm2/pages/khuyenmai.jsp");
-		CN_XemThongTinChuongTrinhKhuyenMai.setHinhAnh("null");
-		CN_XemThongTinChuongTrinhKhuyenMai.setTenHienThi("Thông tin chương trình khuyến mãi");
-		CN_XemThongTinChuongTrinhKhuyenMai.setChucNangCha(CN_QuanLyDichVuGTGT);
-		daochucnang.saveOrUpdate(CN_XemThongTinChuongTrinhKhuyenMai);
-
 		ChucNang CN_QuanLyPhanHoi = new ChucNang();
 		CN_QuanLyPhanHoi.setMaChucNang("kTXSm4_6_0_CN_QuanLyPhanHoi");
 		CN_QuanLyPhanHoi.setDuongDan("kTXSm4/pages/phanhois.jsp");
 		CN_QuanLyPhanHoi.setHinhAnh("fa fa-university");
 		CN_QuanLyPhanHoi.setTenHienThi("Quản lý thông tin phản hồi");
-		CN_QuanLyPhanHoi.setChucNangCha(null);
+		CN_QuanLyPhanHoi.setChucNangCha(CN_QuanLyDichVuGTGT);
 		daochucnang.saveOrUpdate(CN_QuanLyPhanHoi);
-
-		ChucNang CN_PhanHoi = new ChucNang();
-		CN_PhanHoi.setMaChucNang("kTXSm4_6_1_CN_PhanHoi");
-		CN_PhanHoi.setDuongDan("kTXSm4/pages/phanhoi.jsp");
-		CN_PhanHoi.setHinhAnh("fa fa-university");
-		CN_PhanHoi.setTenHienThi(" thông tin phản hồi");
-		CN_PhanHoi.setChucNangCha(CN_QuanLyPhanHoi);
-		daochucnang.saveOrUpdate(CN_PhanHoi);
 
 		/////////////////////////////////////////////////////////////////////////
 		// admin
@@ -399,29 +312,22 @@
 		chs1.add(CN_BaoCaoThongKeNoiTru);
 
 		chs1.add(CN_QuanLyDichVuGTGT);
-		chs1.add(CN_ThemDichVu);
+		chs1.add(CN_DichVuGTGT);
+
 		chs1.add(CN_QuanLyThongTinDichVu);
 		chs1.add(CN_QuanLyChuongTrinhKhuyenMai);
-		chs1.add(CN_XemThongTinChuongTrinhKhuyenMai);
 
 		chs1.add(CN_QuanLyNhaCungCap);
-		chs1.add(CN_ThemNhaCungCap);
-		chs1.add(CN_QuanLyThongTinNhaCungCap);
 
 		chs1.add(CN_QuanLyDonHang);
-		chs1.add(CN_QuanLyThongTinDonHang);
-		chs1.add(CN_QuanLyChiTietDonHang);
+
 		chs1.add(CN_QuanLyTinhTrangDonHang);
-		chs1.add(CN_QuanLyLoaiDonHang);
-		chs1.add(CN_ThemDonHang);
 
 		chs1.add(CN_QuanLyCoSoVatChat);
-		chs1.add(CN_ThemThongTinPhong);
+
 		chs1.add(CN_QuanLyPhong);
 
 		chs1.add(CN_QuanLyMatHang);
-		chs1.add(CN_ThemThongTinMatHang);
-		chs1.add(CN_QuanLyThongTinMatHang);
 
 		chs1.add(CN_QuanLyPhanHoi);
 
@@ -441,13 +347,11 @@
 		chs2.add(CN_QuanLyThongTinNoiTru);
 
 		chs2.add(CN_QuanLyDichVuGTGT);
-		chs2.add(CN_QuanLyThongTinMatHang);
+		chs2.add(CN_DichVuGTGT);
 
 		chs2.add(CN_QuanLyDonHang);
-		chs2.add(CN_QuanLyThongTinDonHang);
-		chs2.add(CN_QuanLyChiTietDonHang);
+
 		chs2.add(CN_QuanLyTinhTrangDonHang);
-		chs2.add(CN_QuanLyLoaiDonHang);
 
 		chs2.add(CN_QuanLyDichVuGTGT);
 		chs2.add(CN_QuanLyThongTinDichVu);
@@ -472,20 +376,17 @@
 		Set<ChucNang> chs3 = new HashSet<ChucNang>();
 
 		chs3.add(CN_QuanLyDichVuGTGT);
-		chs3.add(CN_ThemDichVu);
+		chs3.add(CN_DichVuGTGT);
+
 		chs3.add(CN_QuanLyThongTinDichVu);
 		chs3.add(CN_QuanLyChuongTrinhKhuyenMai);
-		chs3.add(CN_XemThongTinChuongTrinhKhuyenMai);
 
 		chs3.add(CN_QuanLyNhaCungCap);
-		chs3.add(CN_ThemNhaCungCap);
-		chs3.add(CN_QuanLyThongTinNhaCungCap);
 
 		chs3.add(CN_QuanLyDonHang);
-		chs3.add(CN_QuanLyThongTinDonHang);
-		chs3.add(CN_QuanLyChiTietDonHang);
+
 		chs3.add(CN_QuanLyTinhTrangDonHang);
-		chs3.add(CN_QuanLyLoaiDonHang);
+
 		chs3.add(CN_QuanLyPhanHoi);
 
 		nhomPhanQuyenGiangVienQuanLyDVGTGT.setChucNangs(chs3);
@@ -494,7 +395,7 @@
 		//////////////////////////////////////////////////////////
 
 		//////////////////////////////////////////////////////
-		// giang vien duoc phan cong quan ly thong tin ngoai tru
+		// giang vien duoc phan cong quan ly thong tin noi tru
 		/////////////////////////////////////////////////////
 		NhomPhanQuyen nhomPhanQuyenGiangVienQuanLyNoiTru = new NhomPhanQuyen();
 		nhomPhanQuyenGiangVienQuanLyNoiTru.setMaNhomPhanQuyen("giangvienquanlynoitru");
@@ -527,14 +428,10 @@
 		chs6.add(CN_QuanLyThongTinNoiTru);
 
 		chs6.add(CN_QuanLyDonHang);
-		chs6.add(CN_QuanLyThongTinDonHang);
-		chs6.add(CN_QuanLyChiTietDonHang);
-		chs6.add(CN_QuanLyTinhTrangDonHang);
-		chs6.add(CN_QuanLyLoaiDonHang);
-		chs6.add(CN_ThemDonHang);
+
+		chs6.add(CN_DichVuGTGT);
 
 		chs6.add(CN_QuanLyPhanHoi);
-		chs6.add(CN_PhanHoi);
 
 		nhomPhanQuyenSinhVien.setChucNangs(chs6);
 		ObjectDAO daonpq5 = new DAO_NhomPhanQuyen();
@@ -565,7 +462,7 @@
 		tkSinhVien.setSinhVien(sinhVien);
 		tkSinhVien.setNhomPhanQuyen(nhomPhanQuyenSinhVien);
 		ObjectDAO dao4 = new DAO_TaiKhoan();
-		dao3.saveOrUpdate(tkSinhVien);
+		dao3.saveOrUpdate(tkSinhVien); 
 	%>
 </body>
 </html>

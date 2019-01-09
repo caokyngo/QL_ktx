@@ -1,5 +1,4 @@
-<%@page import="kTXSm2.model.LoaiDonHang"%>
-<%@page import="kTXSm2.modelDao.DAO_LoaiDonHang"%>
+
 <%@page import="kTXSm2.modelDao.DAO_MatHang"%>
 <%@page import="kTXCore.model.SinhVien"%>
 <%@page import="kTXSm2.model.NhaCungCap"%>
@@ -198,33 +197,7 @@
 
 									</select>
 								</div>
-								<div class="form-group">
-									<label>Loại đơn hàng</label> <select class="form-control"
-										name="maLoai" <%=(modeView ? " disabled " : "")%>>
-										<option></option>
-
-										<%
-											ObjectDAO dao_loaidonhang = new DAO_LoaiDonHang();
-											ArrayList<LoaiDonHang> listLoaiDonHang= dao_loaidonhang.listAll();
-											for (int i = 0; i < listLoaiDonHang.size(); i++) {
-												LoaiDonHang ldh = listLoaiDonHang.get(i);
-												if (obj != null && obj.getLoaiDonHang() != null
-														&& obj.getLoaiDonHang().getMaLoai().equals(ldh.maLoai)) {
-										%>
-										<option value="<%=ldh.maLoai%>" selected="selected"><%=ldh.tenLoaiDonHang%></option>
-										<%
-											} else {
-										%>
-										<option value="<%=ldh.maLoai%>"><%=ldh.tenLoaiDonHang%></option>
-										<%
-											}
-										%>
-										<%
-											}
-										%>
-
-									</select>
-								</div>
+								
 								<div class="form-group">
 									<label>Số lượng tồn kho</label> <input class="form-control"
 										name="soLuongTon"

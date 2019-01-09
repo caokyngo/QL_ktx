@@ -7,8 +7,8 @@
 <%
 	String tenLop = "DonHang";
 	String tenTrang = "Quản lý đơn hàng";
-	String[] tk_value = { "maDonHang", "sinhVien", "nhanVien", "loaiDonHang", "tinhTrangDonHang" };
-	String[] tk_show = { "Mã đơn hàng", "Sinh viên", "Nhân viên", "Loại đơn hàng", "Tình trạng đơn hàng" };
+	String[] tk_value = { "maDonHang", "sinhVien", "nhanVien",  "tinhTrangDonHang" };
+	String[] tk_show = { "Mã đơn hàng", "Sinh viên", "Nhân viên",  "Tình trạng đơn hàng" };
 %>
 <%@ include file="../../kTXPartial/code-header.jsp"%>
 <%
@@ -52,7 +52,7 @@
 						<th>Mã đơn hàng</th>
 						<th>Sinh viên</th>
 						<th>Nhân viên</th>
-						<th>Loại đơn hàng</th>
+						
 						<th>Tình trạng đơn hàng</th>
 						<th>Xử lý</th>
 
@@ -69,7 +69,7 @@
 						<td><%=obj.getMaDonHang() %></td>
 						<td><%=obj.getSinhVien() != null ? obj.getSinhVien() : "" %></td>
 						<td><%=obj.getNhanVien() != null ? obj.getNhanVien() : "" %></td>
-						<td><%=obj.getLoaiDonHang() != null ? obj.getLoaiDonHang() : "" %></td>
+						
 						<td><%=obj.getTinhTrangDonHang() != null ? obj.getTinhTrangDonHang() : "" %></td>
 						
 						

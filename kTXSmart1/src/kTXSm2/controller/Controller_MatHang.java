@@ -18,11 +18,11 @@ import kTXCore.model.NhanVien;
 import kTXCore.util.Util_Number;
 import kTXSm1.model.ThongTinNoiTru;
 import kTXSm2.model.KhuyenMai;
-import kTXSm2.model.LoaiDonHang;
+
 import kTXSm2.model.MatHang;
 import kTXSm2.model.NhaCungCap;
 import kTXSm2.modelDao.DAO_KhuyenMai;
-import kTXSm2.modelDao.DAO_LoaiDonHang;
+
 import kTXSm2.modelDao.DAO_MatHang;
 import kTXSm2.modelDao.DAO_NhaCungCap;
 import kTXSm3.model.DichVu;
@@ -71,15 +71,7 @@ public class Controller_MatHang extends MatHang implements ZEController<MatHang>
 		this.maLoai = maLoai;
 	}
 	
-	@Override
-	public LoaiDonHang getLoaiDonHang() {
-		ObjectDAO<LoaiDonHang> dao_loaidonhang= new DAO_LoaiDonHang();
-		ArrayList<LoaiDonHang> list_donhang=dao_loaidonhang.listByColumns("maLoai", getMaLoai());
-		if(list_donhang.size()>0)
-			return list_donhang.get(0);
-		else
-			return null;
-	}
+	
 
 	public String getS_anhMoTa() {
 		return s_anhMoTa;
@@ -485,7 +477,7 @@ public class Controller_MatHang extends MatHang implements ZEController<MatHang>
 			obj.dichVu = getDichVu();
 			obj.khuyenMai = getKhuyenMai();
 			obj.nhaCungCap = getNhaCungCap();
-			obj.loaiDonHang = getLoaiDonHang();
+			
 			obj.ngayNhap = getNgayNhap();
 			obj.hanSuDung = getHanSuDung();
 			obj.soLuongTon = getSoLuongTon();
